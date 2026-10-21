@@ -1,0 +1,48 @@
+# Dependencies & local installer binaries
+deps/
+
+# Build artifacts and compiled objects
+build/
+bin/
+obj/
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.dylib
+*.a
+*.lib
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# LaTeX auxiliary files (keep .tex, .bib, and image files)
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.nav
+*.snm
+*.vrb
+
+# IDE and Editor configurations
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System files
+Thumbs.db
+.DS_Store
+desktop.ini

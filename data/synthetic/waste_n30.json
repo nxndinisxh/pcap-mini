@@ -1,0 +1,296 @@
+{
+  "name": "MunicipalWaste_N30_V4",
+  "num_bins": 30,
+  "num_vehicles": 4,
+  "vehicle_capacity": 100.0,
+  "depot": {
+    "id": 0,
+    "x": 50.0,
+    "y": 50.0,
+    "demand": 0.0,
+    "fill_level": 0.0,
+    "priority": 0,
+    "service_time": 0.0
+  },
+  "bins": [
+    {
+      "id": 0,
+      "x": 50.0,
+      "y": 50.0,
+      "demand": 0.0,
+      "fill_level": 0.0,
+      "priority": 0,
+      "service_time": 0.0
+    },
+    {
+      "id": 1,
+      "x": 67.12,
+      "y": 59.51,
+      "demand": 18.5,
+      "fill_level": 0.74,
+      "priority": 2,
+      "service_time": 2.1
+    },
+    {
+      "id": 2,
+      "x": 32.68,
+      "y": 87.91,
+      "demand": 16.5,
+      "fill_level": 0.66,
+      "priority": 2,
+      "service_time": 4.0
+    },
+    {
+      "id": 3,
+      "x": 17.9,
+      "y": 44.04,
+      "demand": 13.6,
+      "fill_level": 0.54,
+      "priority": 1,
+      "service_time": 3.2
+    },
+    {
+      "id": 4,
+      "x": 96.68,
+      "y": 53.8,
+      "demand": 13.3,
+      "fill_level": 0.53,
+      "priority": 2,
+      "service_time": 4.2
+    },
+    {
+      "id": 5,
+      "x": 22.19,
+      "y": 12.06,
+      "demand": 16.6,
+      "fill_level": 0.67,
+      "priority": 1,
+      "service_time": 4.5
+    },
+    {
+      "id": 6,
+      "x": 62.66,
+      "y": 43.09,
+      "demand": 23.2,
+      "fill_level": 0.93,
+      "priority": 3,
+      "service_time": 4.4
+    },
+    {
+      "id": 7,
+      "x": 25.91,
+      "y": 45.29,
+      "demand": 21.5,
+      "fill_level": 0.86,
+      "priority": 2,
+      "service_time": 3.1
+    },
+    {
+      "id": 8,
+      "x": 73.46,
+      "y": 55.05,
+      "demand": 18.1,
+      "fill_level": 0.72,
+      "priority": 1,
+      "service_time": 3.2
+    },
+    {
+      "id": 9,
+      "x": 11.52,
+      "y": 84.22,
+      "demand": 9.9,
+      "fill_level": 0.4,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 10,
+      "x": 67.76,
+      "y": 20.64,
+      "demand": 20.8,
+      "fill_level": 0.83,
+      "priority": 2,
+      "service_time": 4.4
+    },
+    {
+      "id": 11,
+      "x": 80.15,
+      "y": 11.81,
+      "demand": 18.0,
+      "fill_level": 0.72,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 12,
+      "x": 45.01,
+      "y": 69.55,
+      "demand": 8.4,
+      "fill_level": 0.33,
+      "priority": 1,
+      "service_time": 3.4
+    },
+    {
+      "id": 13,
+      "x": 42.57,
+      "y": 76.32,
+      "demand": 9.8,
+      "fill_level": 0.39,
+      "priority": 1,
+      "service_time": 2.5
+    },
+    {
+      "id": 14,
+      "x": 60.82,
+      "y": 80.1,
+      "demand": 19.7,
+      "fill_level": 0.79,
+      "priority": 3,
+      "service_time": 2.6
+    },
+    {
+      "id": 15,
+      "x": 79.26,
+      "y": 45.79,
+      "demand": 14.9,
+      "fill_level": 0.59,
+      "priority": 1,
+      "service_time": 3.4
+    },
+    {
+      "id": 16,
+      "x": 79.32,
+      "y": 32.52,
+      "demand": 7.6,
+      "fill_level": 0.3,
+      "priority": 1,
+      "service_time": 3.9
+    },
+    {
+      "id": 17,
+      "x": 20.8,
+      "y": 52.23,
+      "demand": 22.0,
+      "fill_level": 0.88,
+      "priority": 1,
+      "service_time": 4.1
+    },
+    {
+      "id": 18,
+      "x": 79.64,
+      "y": 69.25,
+      "demand": 15.1,
+      "fill_level": 0.6,
+      "priority": 2,
+      "service_time": 3.1
+    },
+    {
+      "id": 19,
+      "x": 51.01,
+      "y": 33.34,
+      "demand": 11.5,
+      "fill_level": 0.46,
+      "priority": 2,
+      "service_time": 5.0
+    },
+    {
+      "id": 20,
+      "x": 73.88,
+      "y": 91.31,
+      "demand": 20.2,
+      "fill_level": 0.81,
+      "priority": 3,
+      "service_time": 3.4
+    },
+    {
+      "id": 21,
+      "x": 60.3,
+      "y": 71.69,
+      "demand": 19.7,
+      "fill_level": 0.79,
+      "priority": 1,
+      "service_time": 2.6
+    },
+    {
+      "id": 22,
+      "x": 5.63,
+      "y": 89.93,
+      "demand": 8.5,
+      "fill_level": 0.34,
+      "priority": 1,
+      "service_time": 2.5
+    },
+    {
+      "id": 23,
+      "x": 76.71,
+      "y": 64.17,
+      "demand": 16.0,
+      "fill_level": 0.64,
+      "priority": 1,
+      "service_time": 3.3
+    },
+    {
+      "id": 24,
+      "x": 33.02,
+      "y": 68.67,
+      "demand": 22.2,
+      "fill_level": 0.89,
+      "priority": 2,
+      "service_time": 3.4
+    },
+    {
+      "id": 25,
+      "x": 64.42,
+      "y": 47.2,
+      "demand": 24.2,
+      "fill_level": 0.97,
+      "priority": 1,
+      "service_time": 3.2
+    },
+    {
+      "id": 26,
+      "x": 21.12,
+      "y": 55.84,
+      "demand": 15.4,
+      "fill_level": 0.61,
+      "priority": 2,
+      "service_time": 3.6
+    },
+    {
+      "id": 27,
+      "x": 84.44,
+      "y": 83.16,
+      "demand": 18.4,
+      "fill_level": 0.73,
+      "priority": 3,
+      "service_time": 2.6
+    },
+    {
+      "id": 28,
+      "x": 63.69,
+      "y": 20.88,
+      "demand": 17.9,
+      "fill_level": 0.72,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 29,
+      "x": 16.07,
+      "y": 36.67,
+      "demand": 15.9,
+      "fill_level": 0.63,
+      "priority": 2,
+      "service_time": 3.3
+    },
+    {
+      "id": 30,
+      "x": 13.92,
+      "y": 26.8,
+      "demand": 18.4,
+      "fill_level": 0.74,
+      "priority": 1,
+      "service_time": 2.2
+    }
+  ]
+}

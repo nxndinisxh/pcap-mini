@@ -1,0 +1,305 @@
+{
+  "name": "CVRPLIB_A-n32-k5",
+  "num_bins": 31,
+  "num_vehicles": 5,
+  "vehicle_capacity": 100.0,
+  "depot": {
+    "id": 0,
+    "x": 82.0,
+    "y": 76.0,
+    "demand": 0.0,
+    "fill_level": 0.0,
+    "priority": 0,
+    "service_time": 0.0
+  },
+  "bins": [
+    {
+      "id": 0,
+      "x": 82.0,
+      "y": 76.0,
+      "demand": 0.0,
+      "fill_level": 0.0,
+      "priority": 0,
+      "service_time": 0.0
+    },
+    {
+      "id": 1,
+      "x": 96.0,
+      "y": 44.0,
+      "demand": 19.0,
+      "fill_level": 0.76,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 2,
+      "x": 50.0,
+      "y": 5.0,
+      "demand": 21.0,
+      "fill_level": 0.84,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 3,
+      "x": 49.0,
+      "y": 8.0,
+      "demand": 6.0,
+      "fill_level": 0.24,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 4,
+      "x": 13.0,
+      "y": 7.0,
+      "demand": 19.0,
+      "fill_level": 0.76,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 5,
+      "x": 29.0,
+      "y": 89.0,
+      "demand": 7.0,
+      "fill_level": 0.28,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 6,
+      "x": 58.0,
+      "y": 30.0,
+      "demand": 12.0,
+      "fill_level": 0.48,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 7,
+      "x": 84.0,
+      "y": 39.0,
+      "demand": 16.0,
+      "fill_level": 0.64,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 8,
+      "x": 14.0,
+      "y": 24.0,
+      "demand": 6.0,
+      "fill_level": 0.24,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 9,
+      "x": 2.0,
+      "y": 39.0,
+      "demand": 16.0,
+      "fill_level": 0.64,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 10,
+      "x": 3.0,
+      "y": 82.0,
+      "demand": 8.0,
+      "fill_level": 0.32,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 11,
+      "x": 5.0,
+      "y": 10.0,
+      "demand": 14.0,
+      "fill_level": 0.56,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 12,
+      "x": 98.0,
+      "y": 52.0,
+      "demand": 21.0,
+      "fill_level": 0.84,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 13,
+      "x": 84.0,
+      "y": 25.0,
+      "demand": 16.0,
+      "fill_level": 0.64,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 14,
+      "x": 61.0,
+      "y": 59.0,
+      "demand": 3.0,
+      "fill_level": 0.12,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 15,
+      "x": 1.0,
+      "y": 65.0,
+      "demand": 22.0,
+      "fill_level": 0.88,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 16,
+      "x": 88.0,
+      "y": 51.0,
+      "demand": 18.0,
+      "fill_level": 0.72,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 17,
+      "x": 91.0,
+      "y": 2.0,
+      "demand": 19.0,
+      "fill_level": 0.76,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 18,
+      "x": 19.0,
+      "y": 32.0,
+      "demand": 1.0,
+      "fill_level": 0.04,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 19,
+      "x": 93.0,
+      "y": 3.0,
+      "demand": 24.0,
+      "fill_level": 0.96,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 20,
+      "x": 23.0,
+      "y": 3.0,
+      "demand": 8.0,
+      "fill_level": 0.32,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 21,
+      "x": 98.0,
+      "y": 14.0,
+      "demand": 12.0,
+      "fill_level": 0.48,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 22,
+      "x": 56.0,
+      "y": 87.0,
+      "demand": 4.0,
+      "fill_level": 0.16,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 23,
+      "x": 76.0,
+      "y": 22.0,
+      "demand": 8.0,
+      "fill_level": 0.32,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 24,
+      "x": 54.0,
+      "y": 72.0,
+      "demand": 24.0,
+      "fill_level": 0.96,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 25,
+      "x": 89.0,
+      "y": 78.0,
+      "demand": 24.0,
+      "fill_level": 0.96,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 26,
+      "x": 37.0,
+      "y": 73.0,
+      "demand": 2.0,
+      "fill_level": 0.08,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 27,
+      "x": 76.0,
+      "y": 71.0,
+      "demand": 20.0,
+      "fill_level": 0.8,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 28,
+      "x": 46.0,
+      "y": 79.0,
+      "demand": 15.0,
+      "fill_level": 0.6,
+      "priority": 2,
+      "service_time": 3.0
+    },
+    {
+      "id": 29,
+      "x": 33.0,
+      "y": 40.0,
+      "demand": 2.0,
+      "fill_level": 0.08,
+      "priority": 3,
+      "service_time": 3.0
+    },
+    {
+      "id": 30,
+      "x": 45.0,
+      "y": 65.0,
+      "demand": 14.0,
+      "fill_level": 0.56,
+      "priority": 1,
+      "service_time": 3.0
+    },
+    {
+      "id": 31,
+      "x": 83.0,
+      "y": 11.0,
+      "demand": 9.0,
+      "fill_level": 0.36,
+      "priority": 2,
+      "service_time": 3.0
+    }
+  ]
+}

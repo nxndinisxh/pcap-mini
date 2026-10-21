@@ -1,0 +1,503 @@
+{
+  "name": "CVRPLIB_A-n54-k7",
+  "num_bins": 53,
+  "num_vehicles": 7,
+  "vehicle_capacity": 100.0,
+  "depot": {
+    "id": 0,
+    "x": 50.0,
+    "y": 50.0,
+    "demand": 0.0,
+    "fill_level": 0.0,
+    "priority": 0,
+    "service_time": 0.0
+  },
+  "bins": [
+    {
+      "id": 0,
+      "x": 50.0,
+      "y": 50.0,
+      "demand": 0.0,
+      "fill_level": 0.0,
+      "priority": 0,
+      "service_time": 0.0
+    },
+    {
+      "id": 1,
+      "x": 69.98,
+      "y": 45.9,
+      "demand": 10.0,
+      "fill_level": 0.4,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 2,
+      "x": 61.66,
+      "y": 61.34,
+      "demand": 22.0,
+      "fill_level": 0.88,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 3,
+      "x": 45.81,
+      "y": 61.06,
+      "demand": 16.0,
+      "fill_level": 0.64,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 4,
+      "x": 31.59,
+      "y": 70.87,
+      "demand": 9.0,
+      "fill_level": 0.36,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 5,
+      "x": 42.22,
+      "y": 59.87,
+      "demand": 12.0,
+      "fill_level": 0.48,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 6,
+      "x": 47.5,
+      "y": 82.84,
+      "demand": 22.0,
+      "fill_level": 0.88,
+      "priority": 3,
+      "service_time": 3.5
+    },
+    {
+      "id": 7,
+      "x": 86.74,
+      "y": 38.58,
+      "demand": 19.0,
+      "fill_level": 0.76,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 8,
+      "x": 60.66,
+      "y": 24.74,
+      "demand": 17.0,
+      "fill_level": 0.68,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 9,
+      "x": 79.92,
+      "y": 29.25,
+      "demand": 22.0,
+      "fill_level": 0.88,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 10,
+      "x": 28.37,
+      "y": 68.45,
+      "demand": 14.0,
+      "fill_level": 0.56,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 11,
+      "x": 54.91,
+      "y": 69.48,
+      "demand": 13.0,
+      "fill_level": 0.52,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 12,
+      "x": 17.16,
+      "y": 11.88,
+      "demand": 24.0,
+      "fill_level": 0.96,
+      "priority": 3,
+      "service_time": 3.5
+    },
+    {
+      "id": 13,
+      "x": 55.19,
+      "y": 15.62,
+      "demand": 10.0,
+      "fill_level": 0.4,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 14,
+      "x": 93.98,
+      "y": 89.4,
+      "demand": 19.0,
+      "fill_level": 0.76,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 15,
+      "x": 31.77,
+      "y": 16.5,
+      "demand": 19.0,
+      "fill_level": 0.76,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 16,
+      "x": 67.37,
+      "y": 20.0,
+      "demand": 13.0,
+      "fill_level": 0.52,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 17,
+      "x": 11.55,
+      "y": 53.68,
+      "demand": 14.0,
+      "fill_level": 0.56,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 18,
+      "x": 15.17,
+      "y": 37.02,
+      "demand": 16.0,
+      "fill_level": 0.64,
+      "priority": 3,
+      "service_time": 3.5
+    },
+    {
+      "id": 19,
+      "x": 80.22,
+      "y": 63.63,
+      "demand": 25.0,
+      "fill_level": 1.0,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 20,
+      "x": 64.13,
+      "y": 42.07,
+      "demand": 8.0,
+      "fill_level": 0.32,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 21,
+      "x": 12.28,
+      "y": 77.87,
+      "demand": 24.0,
+      "fill_level": 0.96,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 22,
+      "x": 79.74,
+      "y": 61.42,
+      "demand": 8.0,
+      "fill_level": 0.32,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 23,
+      "x": 57.73,
+      "y": 58.2,
+      "demand": 20.0,
+      "fill_level": 0.8,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 24,
+      "x": 55.61,
+      "y": 46.63,
+      "demand": 21.0,
+      "fill_level": 0.84,
+      "priority": 3,
+      "service_time": 3.5
+    },
+    {
+      "id": 25,
+      "x": 71.04,
+      "y": 90.58,
+      "demand": 9.0,
+      "fill_level": 0.36,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 26,
+      "x": 20.06,
+      "y": 39.19,
+      "demand": 24.0,
+      "fill_level": 0.96,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 27,
+      "x": 86.84,
+      "y": 26.77,
+      "demand": 14.0,
+      "fill_level": 0.56,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 28,
+      "x": 60.8,
+      "y": 33.8,
+      "demand": 9.0,
+      "fill_level": 0.36,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 29,
+      "x": 74.35,
+      "y": 15.6,
+      "demand": 5.0,
+      "fill_level": 0.2,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 30,
+      "x": 63.16,
+      "y": 25.5,
+      "demand": 16.0,
+      "fill_level": 0.64,
+      "priority": 3,
+      "service_time": 3.5
+    },
+    {
+      "id": 31,
+      "x": 51.61,
+      "y": 65.5,
+      "demand": 9.0,
+      "fill_level": 0.36,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 32,
+      "x": 81.79,
+      "y": 66.4,
+      "demand": 7.0,
+      "fill_level": 0.28,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 33,
+      "x": 72.55,
+      "y": 54.14,
+      "demand": 16.0,
+      "fill_level": 0.64,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 34,
+      "x": 32.83,
+      "y": 86.85,
+      "demand": 21.0,
+      "fill_level": 0.84,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 35,
+      "x": 56.19,
+      "y": 56.57,
+      "demand": 15.0,
+      "fill_level": 0.6,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 36,
+      "x": 23.99,
+      "y": 37.57,
+      "demand": 6.0,
+      "fill_level": 0.24,
+      "priority": 3,
+      "service_time": 3.5
+    },
+    {
+      "id": 37,
+      "x": 14.21,
+      "y": 10.69,
+      "demand": 23.0,
+      "fill_level": 0.92,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 38,
+      "x": 85.68,
+      "y": 51.44,
+      "demand": 14.0,
+      "fill_level": 0.56,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 39,
+      "x": 27.96,
+      "y": 92.55,
+      "demand": 9.0,
+      "fill_level": 0.36,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 40,
+      "x": 11.45,
+      "y": 70.09,
+      "demand": 7.0,
+      "fill_level": 0.28,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 41,
+      "x": 5.9,
+      "y": 89.6,
+      "demand": 12.0,
+      "fill_level": 0.48,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 42,
+      "x": 18.16,
+      "y": 81.57,
+      "demand": 10.0,
+      "fill_level": 0.4,
+      "priority": 3,
+      "service_time": 3.5
+    },
+    {
+      "id": 43,
+      "x": 9.24,
+      "y": 55.42,
+      "demand": 19.0,
+      "fill_level": 0.76,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 44,
+      "x": 46.54,
+      "y": 15.63,
+      "demand": 12.0,
+      "fill_level": 0.48,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 45,
+      "x": 38.02,
+      "y": 34.86,
+      "demand": 13.0,
+      "fill_level": 0.52,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 46,
+      "x": 32.32,
+      "y": 17.88,
+      "demand": 15.0,
+      "fill_level": 0.6,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 47,
+      "x": 60.2,
+      "y": 24.98,
+      "demand": 7.0,
+      "fill_level": 0.28,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 48,
+      "x": 46.89,
+      "y": 71.59,
+      "demand": 13.0,
+      "fill_level": 0.52,
+      "priority": 3,
+      "service_time": 3.5
+    },
+    {
+      "id": 49,
+      "x": 88.96,
+      "y": 8.19,
+      "demand": 16.0,
+      "fill_level": 0.64,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 50,
+      "x": 53.3,
+      "y": 41.64,
+      "demand": 6.0,
+      "fill_level": 0.24,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 51,
+      "x": 20.03,
+      "y": 73.92,
+      "demand": 24.0,
+      "fill_level": 0.96,
+      "priority": 1,
+      "service_time": 3.5
+    },
+    {
+      "id": 52,
+      "x": 34.2,
+      "y": 91.28,
+      "demand": 20.0,
+      "fill_level": 0.8,
+      "priority": 2,
+      "service_time": 3.5
+    },
+    {
+      "id": 53,
+      "x": 80.28,
+      "y": 6.68,
+      "demand": 13.0,
+      "fill_level": 0.52,
+      "priority": 1,
+      "service_time": 3.5
+    }
+  ]
+}
