@@ -3,7 +3,7 @@
 ## Target Conference Selection & Submission Package
 **Project:** Hybrid MPI-OpenMP Based Intelligent Waste Collection Route Optimization  
 **Authors:** Nandini Sah (240905552), Prisha Gupta (240905612)  
-**Affiliation:** Department of Computer Science & Engineering, Manipal Institute of Technology, Manipal Academy of Higher Education (MAHE)
+**Affiliation:** School of Computer Engineering, Manipal Institute of Technology, Manipal Academy of Higher Education (MAHE)
 
 ---
 

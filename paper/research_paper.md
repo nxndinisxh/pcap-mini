@@ -4,7 +4,7 @@
 - **Nandini Sah** (Registration Number: 240905552, Branch: CSE, Section: D)  
 - **Prisha Gupta** (Registration Number: 240905612, Branch: CSE, Section: D)  
 
-*Department of Computer Science & Engineering, Manipal Institute of Technology, Manipal Academy of Higher Education (MAHE), Manipal, Karnataka 576104, India*  
+*School of Computer Engineering, Manipal Institute of Technology, Manipal Academy of Higher Education (MAHE), Manipal, Karnataka 576104, India*  
 *Course: Parallel Computing Applications (PCAP) Mini Project*  
 *Academic Year: 2026–2027*
 

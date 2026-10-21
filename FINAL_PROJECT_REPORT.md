@@ -8,7 +8,7 @@
 ---
 
 **Course:** Parallel Computing Applications (PCAP)  
-**Department:** Department of Computer Science & Engineering  
+**Department / School:** School of Computer Engineering  
 **Institution:** Manipal Institute of Technology, Manipal Academy of Higher Education (MAHE), Manipal, Karnataka, India  
 **Academic Year:** 2026–2027  
 
