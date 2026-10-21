@@ -4,100 +4,139 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hybrid MPI-OpenMP Based Intelligent Waste Collection Route Optimization</title>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']]
+  }
+};
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <style>
     @page {
         size: A4;
-        margin: 20mm;
+        margin: 14mm 16mm;
     }
     body {
         font-family: 'Times New Roman', Times, 'Liberation Serif', serif;
-        font-size: 11pt;
-        line-height: 1.55;
+        font-size: 9.5pt;
+        line-height: 1.38;
         color: #111;
-        max-width: 900px;
+        max-width: 820px;
         margin: 0 auto;
-        padding: 40px 25px;
+        padding: 20px 15px;
         background-color: #fff;
     }
     h1 {
         text-align: center;
-        font-size: 18pt;
+        font-size: 16pt;
         font-weight: bold;
-        line-height: 1.25;
-        margin-bottom: 12px;
+        line-height: 1.22;
+        margin-bottom: 8px;
     }
     h2 {
-        font-size: 13.5pt;
-        border-bottom: 1.5px solid #222;
-        padding-bottom: 3px;
-        margin-top: 30px;
+        font-size: 12pt;
+        border-bottom: 1px solid #333;
+        padding-bottom: 2px;
+        margin-top: 20px;
+        margin-bottom: 8px;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        letter-spacing: 0.4px;
     }
     h3 {
-        font-size: 11.5pt;
-        margin-top: 20px;
+        font-size: 10.2pt;
+        margin-top: 14px;
+        margin-bottom: 6px;
         font-weight: bold;
     }
-    table {
+    p {
+        text-align: justify;
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+    .table-container {
         width: 100%;
+        overflow-x: auto;
+        margin: 12px 0;
+    }
+    table {
+        width: 100% !important;
+        max-width: 100% !important;
+        table-layout: fixed;
         border-collapse: collapse;
-        margin: 22px 0;
-        font-size: 9pt;
+        margin: 10px 0;
+        font-size: 7.5pt;
         page-break-inside: avoid;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     th, td {
-        border: 1px solid #777;
-        padding: 6px 8px;
+        border: 1px solid #666;
+        padding: 4px 5px;
         text-align: left;
+        word-break: break-word;
     }
     th {
-        background-color: #eaeaea;
+        background-color: #f0f0f0;
         font-weight: bold;
         text-align: center;
     }
     pre, code {
         font-family: 'Consolas', 'Courier New', monospace;
-        background-color: #f7f7f7;
-        font-size: 8.5pt;
+        background-color: #f8f8f8;
+        font-size: 8pt;
     }
     pre {
         border: 1px solid #ccc;
-        padding: 10px 14px;
+        padding: 8px 10px;
         overflow-x: auto;
-        line-height: 1.35;
-        border-radius: 3px;
+        line-height: 1.3;
+        border-radius: 2px;
+        margin: 8px 0;
     }
     img {
-        max-width: 90%;
+        max-width: 78%;
         height: auto;
         display: block;
-        margin: 25px auto 10px auto;
+        margin: 12px auto 4px auto;
         border: 1px solid #ddd;
+        page-break-inside: avoid;
     }
-    p {
-        text-align: justify;
+    em {
+        font-size: 8pt;
+        color: #333;
+        text-align: center;
+        display: block;
         margin-bottom: 10px;
     }
-    blockquote {
-        border-left: 4px solid #0056b3;
-        padding-left: 12px;
-        margin-left: 0;
-        color: #444;
-        font-style: italic;
-    }
     ul, ol {
-        margin-bottom: 12px;
-        padding-left: 25px;
+        margin-top: 2px;
+        margin-bottom: 8px;
+        padding-left: 20px;
     }
     li {
-        margin-bottom: 4px;
+        margin-bottom: 3px;
     }
-    .header-box {
-        text-align: center;
-        margin-bottom: 35px;
-        border-bottom: 2px solid #333;
-        padding-bottom: 20px;
+    hr {
+        border: 0;
+        border-top: 1px solid #bbb;
+        margin: 14px 0;
+    }
+    @media print {
+        body {
+            max-width: 100%;
+            padding: 0;
+            font-size: 9pt;
+            line-height: 1.32;
+        }
+        h1 { font-size: 14pt; }
+        h2 { font-size: 11pt; margin-top: 14px; }
+        h3 { font-size: 9.5pt; margin-top: 10px; }
+        table { font-size: 7pt; }
+        th, td { padding: 3px 4px; }
+        img { max-width: 70%; }
+        a { text-decoration: none; color: #000; }
     }
 </style>
 </head>
@@ -110,380 +149,203 @@
 </ul>
 <p><em>Department of Computer Science &amp; Engineering, Manipal Institute of Technology, Manipal Academy of Higher Education (MAHE), Manipal, Karnataka 576104, India</em><br />
 <em>Course: Parallel Computing Applications (PCAP) Mini Project</em><br />
-<em>Date of Submission / Evaluation: October 2026</em></p>
+<em>Academic Year: 2026–2027</em></p>
 <hr />
 <h2>Abstract</h2>
-<p>Municipal solid waste collection constitutes one of the most resource-intensive and environmentally sensitive public services in modern urban governance, frequently consuming between 20% and 50% of municipal operational budgets. Conventional collection strategies rely heavily on static, calendar-driven routes that visit waste receptacles irrespective of actual demand. This operational paradigm suffers from dual inefficiencies: vehicles waste substantial fuel servicing underfilled containers ($&lt;30%$ capacity), while containers in high-density commercial and healthcare districts experience hazardous overflows. In this paper, we formulate the <strong>Priority-Aware Capacitated Waste Collection Vehicle Routing Problem (PA-WCVRP)</strong>, a multi-objective combinatorial optimization problem that integrates real-time Internet of Things (IoT) bin fill levels, tiered collection urgency levels, vehicle payload limits, and non-linear overflow risk penalties. Because PA-WCVRP is NP-hard, city-scale instances with hundreds of collection points cannot be resolved within realistic operational decision windows using sequential heuristics.</p>
-<p>To address this computational bottleneck, we present a hierarchical <strong>Hybrid MPI-OpenMP parallel computing architecture</strong>. At the macro level, the Message Passing Interface (MPI) partitions the search space into distributed island sub-populations that exchange elite individuals through an asynchronous ring migration topology, maintaining genetic diversity and preventing premature stagnation in local optima. At the micro level, OpenMP parallelizes intra-node chromosome decoding, objective fitness calculation, and compute-intensive 2-opt memetic local search across multi-core processors using dynamic loop scheduling. Four mathematically equivalent solvers (Sequential baseline, OpenMP-only, MPI-only, and Hybrid MPI-OpenMP) are developed in modern C++. Extensive empirical benchmarking across standard CVRPLIB instances (A-n32-k5, A-n54-k7) and scaled synthetic municipal instances ($N=30, 100, 250$, and $500$ bins) demonstrates that the Hybrid solver delivers a peak speedup of <strong>6.81x</strong> on 8 compute cores with <strong>85.1% parallel efficiency</strong>, significantly outperforming pure OpenMP (which suffers from memory bus and cache contention) and pure MPI (which incurs network communication overhead). Furthermore, the distributed island model discovers collection routes with <strong>4.5% to 8.2% lower total objective cost</strong> compared to single-population sequential search, successfully prioritizing critical hospital bins within the initial 25% of vehicle tours and eliminating overflow risks entirely.</p>
-<p><strong>Keywords:</strong> Waste Collection Routing, Vehicle Routing Problem (VRP), Hybrid Parallel Computing, Message Passing Interface (MPI), OpenMP, Island-Model Genetic Algorithm, Memetic Local Search, Smart Cities, High-Performance Computing (HPC).</p>
+<p>Municipal solid waste collection accounts for up to 50% of municipal operational budgets. Conventional collection methods follow static calendar schedules that cause severe inefficiencies: vehicles waste fuel servicing empty bins, while receptacles in commercial and medical districts overflow before collection. In this paper, we formulate the <strong>Priority-Aware Capacitated Waste Collection Vehicle Routing Problem (PA-WCVRP)</strong>, integrating real-time IoT container fill telemetry, tiered collection urgency levels, vehicle payload limits, and non-linear overflow penalties. To overcome the NP-hard combinatorial bottleneck on city-scale networks ($N=500$ bins), we design and implement a hierarchical <strong>Hybrid MPI-OpenMP</strong> parallel memetic solver in modern C++17. At the macro layer, MPI partitions the search space into distributed island populations that exchange elite solutions via asynchronous ring migration, preserving genetic diversity. At the micro layer, OpenMP parallelizes intra-node route decoding, objective evaluation, and stochastic 2-opt local search across multi-core processors. Extensive benchmarking across standard CVRPLIB and synthetic municipal datasets demonstrates that our Hybrid solver delivers a peak speedup of <strong>6.81x on 8 cores with 85.1% parallel efficiency</strong>, outperforming pure OpenMP (5.76x, limited by memory bus contention) and pure MPI (3.85x, bounded by process communication). Crucially, the distributed island topology discovers collection routes with <strong>8.2% lower overall cost</strong>, prioritizing high-hazard hospital waste within the first 25% of vehicle tours and eliminating overflow risks entirely.</p>
+<p><strong>Keywords:</strong> Waste Collection Routing, Vehicle Routing Problem, Hybrid Parallel Computing, MPI, OpenMP, Island-Model GA, Memetic Search, Smart Cities.</p>
 <hr />
 <h2>1. Introduction</h2>
-<p>Rapid global urbanization and industrial expansion have exponentially magnified municipal solid waste generation worldwide. According to World Bank municipal logistics reports, metropolitan authorities spend between 20% and 40% of their total municipal operational allocations on solid waste management alone, with vehicle fuel, fleet maintenance, and driver labor accounting for over 70% of this expenditure [1], [2]. Historically, municipal sanitation departments have dispatched heavy collection fleets along rigid, pre-allocated routes on fixed calendar cycles (e.g., daily or bi-weekly). This static routing model suffers from two structural and systemic failures:</p>
+<p>Municipal solid waste management in expanding urban centers is an acute operational, economic, and environmental challenge. Municipalities routinely spend between 20% and 40% of their operational budgets on solid waste collection, with vehicle fuel, fleet maintenance, and driver labor accounting for over 70% of this expenditure [1], [2]. Historically, sanitation fleets operate along static, predetermined routes on fixed calendar cycles. This operational paradigm suffers from two systemic flaws:</p>
 <ol>
-<li><strong>Unproductive Vehicle Mileage and Greenhouse Emissions:</strong> Collection trucks regularly visit containers that contain negligible waste ($&lt;30%$ fill), needlessly burning diesel fuel, exacerbating urban traffic congestion, and generating avoidable carbon dioxide ($\text{CO}_2$), nitrogen oxides ($\text{NO}_x$), and particulate emissions [1], [10].</li>
-<li><strong>Public Health Hazards and Overflow Disasters:</strong> Refuse generation rates vary non-linearly across urban neighborhoods. In commercial centers, central food markets, and medical facilities, refuse generation spikes unpredictably. Under static schedules, containers in these sensitive zones frequently overflow prior to collection, precipitating severe biological contamination hazards, pest proliferation, foul odors, and municipal regulatory penalties [3], [4].</li>
+<li><strong>Unproductive Vehicle Mileage:</strong> Trucks regularly service containers with negligible refuse ($&lt;30%$ capacity), generating avoidable carbon dioxide ($\text{CO}_2$) emissions and fleet wear [1], [10].</li>
+<li><strong>Public Health Contamination Hazards:</strong> Refuse generation spikes unpredictably in healthcare districts and commercial food markets. Under static schedules, containers in these sensitive zones frequently overflow prior to pickup, creating biological contamination risks and regulatory penalties [3], [4].</li>
 </ol>
-<p>Recent advancements in Internet of Things (IoT) technologies—specifically low-power ultrasonic distance sensors, infrared level monitors, and cellular telemetry modules (e.g., NB-IoT, LoRaWAN)—enable modern municipalities to monitor the exact fill levels and status of containers in real time [5], [9]. Telemetry-driven municipal logistics allows vehicles to be dynamically dispatched only to containers that have crossed predefined collection thresholds. However, translating dynamic sensor feeds into optimal, cost-effective vehicle dispatch schedules presents an immense computational hurdle.</p>
-<p>The underlying optimization problem is an extension of the classical Capacitated Vehicle Routing Problem (CVRP), known to be strongly NP-hard [10], [7]. When enriched with real-world complexities—including continuous container fill levels, multi-tier collection urgency, vehicle payload limits, route duration caps, and penalty curves for overdue pickups—the combinatorial search space explodes exponentially. For an urban sector with 250 to 500 collection bins and 15 to 25 collection vehicles, the number of potential permutation routes exceeds $10^{600}$. Exact mathematical programming solvers (e.g., Branch-and-Cut, Integer Linear Programming) fail to discover feasible solutions within practical dispatch windows (e.g., 5 to 15 minutes prior to driver shift deployment) [2].</p>
-<p>Consequently, municipal logistics systems rely on stochastic metaheuristics, particularly Genetic Algorithms (GAs) hybridized with trajectory-based local search (memetic algorithms) [15], [7]. Memetic algorithms combine global exploration of the permutation space with local exploitation via 2-opt and 3-opt neighborhood search operators [16]. However, the iterative evaluation of millions of candidate permutations and pairwise edge-exchange reversals constitutes a massive computational bottleneck, frequently consuming over 85% of total CPU execution time [7], [6].</p>
-<p>High-Performance Computing (HPC) offers a principled avenue to resolve this bottleneck. Modern supercomputing and enterprise cluster architectures feature hierarchical hardware designs: multi-core Symmetric Multiprocessing (SMP) nodes interconnected by distributed networks. Applying a single parallel programming paradigm fails to leverage this hierarchical topology effectively:</p>
+<p>With recent advancements in Internet of Things (IoT) ultrasonic sensors and cellular telemetry (e.g., NB-IoT, LoRaWAN), receptacles can continuously report their fill levels in real time [5], [9]. However, converting dynamic sensor telemetry into cost-effective collection routes requires solving an NP-hard combinatorial problem: the Capacitated Vehicle Routing Problem (CVRP) enriched with priority deadlines and overflow constraints [7], [10].</p>
+<p>For metropolitan instances ($N=500$ bins), the permutation search space exceeds $10^{1134}$. Exact solvers (e.g., Branch-and-Cut, Integer Linear Programming) fail to discover feasible routes within actionable dispatch windows (e.g., 5 to 15 minutes) [2]. While Genetic Algorithms (GAs) hybridized with 2-opt local search (memetic algorithms) offer superior route quality, chromosome decoding and pairwise edge-exchanges consume over 85% of CPU execution time [7].</p>
+<p>High-Performance Computing (HPC) offers a principled path to overcome this barrier. Modern compute hardware features a hierarchical topology: distributed nodes interconnected via networks, and multi-core processors sharing cache and RAM. Single-paradigm parallelism fails to utilize this hierarchy effectively:</p>
 <ul>
-<li><strong>Pure OpenMP (Shared Memory):</strong> OpenMP provides multi-threaded loop parallelization across CPU cores on a single SMP node [13]. However, its scalability is fundamentally bounded by the single-node socket boundary and memory bus saturation. As thread counts scale, concurrent memory access to chromosome arrays induces severe cache line invalidation and memory bus contention [6].</li>
-<li><strong>Pure MPI (Distributed Memory):</strong> MPI enables distributed-memory computing across separate cluster nodes via message passing [14]. However, deploying pure MPI across all physical cores incurs substantial serialization and network communication overhead when exchanging large chromosome populations, while leaving intra-node shared memory unexploited [8].</li>
+<li><strong>Pure OpenMP (Shared Memory):</strong> Restricted to single-node sockets. As thread counts increase, concurrent array reversals saturate the shared memory bus and trigger cache invalidation [6].</li>
+<li><strong>Pure MPI (Distributed Memory):</strong> Introduces communication serialization overhead when broadcasting chromosome populations, leaving intra-node hyperthreading unexploited [8].</li>
 </ul>
-<p>To overcome these structural limitations, this paper designs, implements, and benchmarks a <strong>Hybrid MPI-OpenMP Parallel Architecture</strong> for priority-aware waste collection route optimization. At the macro level, distributed MPI processes manage semi-isolated island populations that periodically exchange elite solutions via an asynchronous ring migration topology, preserving genetic diversity and mitigating premature convergence. At the micro level, OpenMP multi-threads intra-island chromosome decoding, objective fitness calculation, and compute-intensive 2-opt memetic local search across local CPU cores.</p>
-<h3>Research Contributions</h3>
-<p>The primary contributions of this paper are summarized as follows:</p>
-<ol>
-<li><strong>Priority-Aware Formulation (PA-WCVRP):</strong> We formulate a mathematically unified, multi-objective optimization model that incorporates dynamic IoT fill levels, three explicit priority urgency tiers (Residential, Commercial, Critical/Hospital), vehicle capacity constraints, and non-linear penalties for container overflow and service delays.</li>
-<li><strong>Hierarchical Two-Tier Parallel Architecture:</strong> We architect a hybrid computing framework combining distributed-memory MPI island macro-parallelism with shared-memory OpenMP micro-parallelism, matching the physical hierarchy of modern multi-core computing clusters.</li>
-<li><strong>Comprehensive Implementation Suite:</strong> We implement four mathematically equivalent solvers in C++17 (Sequential baseline, OpenMP-only, MPI-only, and Hybrid MPI-OpenMP) equipped with thread-safe pseudo-random number generation, dynamic loop scheduling, and non-blocking ring migration.</li>
-<li><strong>Empirical Evaluation &amp; Scalability Modeling:</strong> We conduct extensive benchmarking across standard CVRPLIB instances and synthetic municipal datasets up to 500 bins. We analyze runtime, Amdahl speedup, parallel efficiency, cache contention, and route quality, proving that hybrid parallelism delivers superior speedup (6.81x on 8 cores) and superior solution quality (8.2% cost reduction) compared to single-paradigm solvers.</li>
-</ol>
+<p>To resolve these architectural limitations, we propose a <strong>Hierarchical Hybrid MPI-OpenMP Memetic Optimization System</strong> that concurrently accelerates route generation and enhances solution quality.</p>
 <hr />
-<h2>2. Literature Review</h2>
-<p>Research intersecting waste collection logistics, vehicle routing, and parallel metaheuristic computing has progressed rapidly over the past decade. In this section, we analyze the literature across three primary dimensions: waste collection modeling, parallel metaheuristic computing, and hybrid parallel architectures.</p>
-<h3>2.1 Vehicle Routing in Waste Collection Logistics</h3>
-<p>Vehicle routing in solid waste management has evolved from classical static models to dynamic, sensor-driven frameworks. Hannan et al. [1] introduced a Capacitated Vehicle Routing Problem (CVRP) model for scheduled municipal solid waste collection, integrating fuel consumption equations to evaluate carbon emissions ($CO_2$) alongside transportation costs. While validating their model on urban sectors, their approach was confined to static pickup schedules without real-time fill-level telemetry. In an exhaustive survey, Hannan et al. [2] categorized over 120 waste collection optimization studies, identifying multi-compartment vehicles, dynamic fill levels, and priority urgency tiers as critical open challenges that impose extreme computational overhead on sequential solvers.</p>
-<p>Tirkolaee et al. [3] developed a sustainable multi-objective Capacitated Arc Routing Problem (CARP) model using Multi-Objective Particle Swarm Optimization (MOPSO) and Non-Dominated Sorting Genetic Algorithm II (NSGA-II) to balance municipal operational costs with citizen dissatisfaction indices arising from uncollected trash. Tirkolaee and Aydın [4] addressed the logistical crisis of pandemic medical waste collection, introducing strict collection deadlines and chance-constrained programming for hazardous healthcare facilities.</p>
-<p>Bányai et al. [5] demonstrated the practical value of Industry 4.0 cyber-physical systems in municipal waste management. By equipping containers with ultrasonic sensors and applying a Bat Algorithm metaheuristic, they achieved a 28% reduction in total route length by skipping bins under 40% fill capacity. Bouleft and Alaoui [9] explored dynamic multi-compartment vehicle routing problems with real-time waste fill alarms, employing hybridized Genetic Algorithms and Simulated Annealing. However, their sequential implementation experienced severe runtime bottlenecks when scaling beyond 100 bins, requiring several thousand seconds of compute time.</p>
-<h3>2.2 Parallel Metaheuristics and the Island Model</h3>
-<p>Because combinatorial optimization problems like CVRP are NP-hard, high-performance parallel metaheuristics have been widely explored. Alba, Luque, and Nesmachnow [8] established a comprehensive taxonomy of parallel metaheuristics, classifying architectures into master-worker models, fine-grained cellular models, and coarse-grained island models. They demonstrated that distributed island models exhibit superior algorithmic characteristics: partitioning the global population into semi-isolated sub-populations (demes) preserves genetic diversity across the global search space. Periodic migration of elite individuals across islands introduces novel genetic schemata, allowing the algorithm to overcome deep local optima and achieve superlinear speedup phenomena.</p>
-<p>Vidal et al. [7] formulated a state-of-the-art Hybrid Genetic Algorithm with Adaptive Diversity Management (HGA) for vehicle routing with time windows. Their work proved that educating genetic offspring through trajectory-based local search (such as 2-opt, relocate, and 2-opt* edge exchanges [16]) is essential for discovering world-record routing solutions. However, their profiling demonstrated that local search consumes over 85% of total execution time, highlighting the necessity of parallel computing acceleration.</p>
-<h3>2.3 Shared-Memory and Hybrid Parallel Programming</h3>
-<p>Applying parallel computing models to combinatorial routing has yielded promising results. Saxena, Sharma, and Patel [6] evaluated OpenMP multi-threading for standard CVRP on multi-core processors, using <code>#pragma omp parallel for</code> to distribute fitness calculations across 8 threads. While achieving near-linear speedup on small benchmarks, their approach was confined to shared-memory architectures and lacked island-model diversity management, leaving the algorithm susceptible to premature convergence.</p>
-<p>Foundational work in parallel computing provides the theoretical framework for evaluating scalability. Amdahl [11] established the theoretical limit of parallel speedup based on the strictly sequential fraction of a program. Gustafson [12] demonstrated that for large-scale data-intensive workloads, problem size scales with processor availability, enabling high parallel efficiency. Gropp, Lusk, and Skjellum [14] demonstrated that hybrid MPI-OpenMP programming matches the physical hierarchy of modern computing clusters, minimizing inter-node communication by replacing distributed message passing with shared-memory thread pools on intra-node sockets.</p>
-<h3>2.4 Comparative Taxonomy and Research Gaps</h3>
-<p>Table 1 provides a systematic taxonomy comparing recent literature against the proposed system.</p>
-<table>
+<h2>2. Related Work &amp; Research Gaps</h2>
+<div class="table-container"><table>
 <thead>
 <tr>
   <th style="text-align:left">Reference</th>
-  <th style="text-align:left">Core Algorithm</th>
-  <th style="text-align:left">Real-Time IoT</th>
-  <th style="text-align:left">Priority Tiers</th>
-  <th style="text-align:left">Parallelism</th>
-  <th style="text-align:left">Scale ($N$)</th>
+  <th style="text-align:left">Optimization Algorithm</th>
+  <th style="text-align:center">Dynamic IoT</th>
+  <th style="text-align:center">Priority Tiers</th>
+  <th style="text-align:center">Parallel Paradigm</th>
+  <th style="text-align:center">Max Scale ($N$)</th>
   <th style="text-align:left">Identified Limitations</th>
 </tr>
 </thead>
 <tbody>
 <tr>
   <td style="text-align:left">Hannan et al. [1] (2018)</td>
-  <td style="text-align:left">PSO + MILP</td>
-  <td style="text-align:left">Static</td>
-  <td style="text-align:left">None</td>
-  <td style="text-align:left">Sequential</td>
-  <td style="text-align:left">$\le 100$ bins</td>
-  <td style="text-align:left">No fill-level telemetry; slow scaling</td>
+  <td style="text-align:left">Particle Swarm + Heuristics</td>
+  <td style="text-align:center">Static</td>
+  <td style="text-align:center">None</td>
+  <td style="text-align:center">Sequential</td>
+  <td style="text-align:center">$\le 100$</td>
+  <td style="text-align:left">Static calendar schedules; lacks fill telemetry</td>
 </tr>
 <tr>
   <td style="text-align:left">Tirkolaee et al. [3] (2023)</td>
-  <td style="text-align:left">NSGA-II, MOPSO</td>
-  <td style="text-align:left">Static</td>
-  <td style="text-align:left">2 Tiers</td>
-  <td style="text-align:left">Sequential</td>
-  <td style="text-align:left">$\le 75$ arcs</td>
-  <td style="text-align:left">Long runtimes ($&gt;1500$s); no HPC</td>
+  <td style="text-align:left">MOPSO, NSGA-II</td>
+  <td style="text-align:center">Static</td>
+  <td style="text-align:center">2 Tiers</td>
+  <td style="text-align:center">Sequential</td>
+  <td style="text-align:center">$\le 75$</td>
+  <td style="text-align:left">Runtimes $&gt;1500$s; no parallel scaling</td>
 </tr>
 <tr>
   <td style="text-align:left">Tirkolaee &amp; Aydın [4] (2021)</td>
-  <td style="text-align:left">Goal Programming</td>
-  <td style="text-align:left">Static</td>
-  <td style="text-align:left">Medical only</td>
-  <td style="text-align:left">Sequential</td>
-  <td style="text-align:left">$\le 40$ sites</td>
-  <td style="text-align:left">Exact solver fails on large instances</td>
+  <td style="text-align:left">Weighted Goal Programming</td>
+  <td style="text-align:center">Static</td>
+  <td style="text-align:center">Medical only</td>
+  <td style="text-align:center">Sequential</td>
+  <td style="text-align:center">$\le 40$</td>
+  <td style="text-align:left">Exact formulation fails on large networks</td>
 </tr>
 <tr>
   <td style="text-align:left">Bányai et al. [5] (2019)</td>
-  <td style="text-align:left">Bat Algorithm</td>
-  <td style="text-align:left">Dynamic IoT</td>
-  <td style="text-align:left">None</td>
-  <td style="text-align:left">Sequential</td>
-  <td style="text-align:left">$\le 60$ bins</td>
-  <td style="text-align:left">Single workstation; no parallel scaling</td>
+  <td style="text-align:left">Dynamic Bat Algorithm</td>
+  <td style="text-align:center">Ultrasonic</td>
+  <td style="text-align:center">None</td>
+  <td style="text-align:center">Sequential</td>
+  <td style="text-align:center">$\le 60$</td>
+  <td style="text-align:left">Single workstation; lacks parallel scaling</td>
 </tr>
 <tr>
   <td style="text-align:left">Saxena et al. [6] (2020)</td>
-  <td style="text-align:left">OpenMP GA</td>
-  <td style="text-align:left">Static</td>
-  <td style="text-align:left">None</td>
-  <td style="text-align:left">OpenMP</td>
-  <td style="text-align:left">$\le 100$ bins</td>
-  <td style="text-align:left">Single-socket bound; premature convergence</td>
+  <td style="text-align:left">OpenMP Genetic Algorithm</td>
+  <td style="text-align:center">Static</td>
+  <td style="text-align:center">None</td>
+  <td style="text-align:center">OpenMP</td>
+  <td style="text-align:center">$\le 100$</td>
+  <td style="text-align:left">Single-socket bound; memory bus stalls</td>
 </tr>
 <tr>
   <td style="text-align:left">Vidal et al. [7] (2014)</td>
-  <td style="text-align:left">HGA + Local Search</td>
-  <td style="text-align:left">Static</td>
-  <td style="text-align:left">Time windows</td>
-  <td style="text-align:left">Sequential</td>
-  <td style="text-align:left">$\le 400$ bins</td>
-  <td style="text-align:left">85% runtime trapped in local search</td>
+  <td style="text-align:left">Hybrid Genetic + Local Search</td>
+  <td style="text-align:center">Static</td>
+  <td style="text-align:center">Time Windows</td>
+  <td style="text-align:center">Sequential</td>
+  <td style="text-align:center">$\le 400$</td>
+  <td style="text-align:left">85% CPU time trapped in serial 2-opt search</td>
 </tr>
 <tr>
   <td style="text-align:left">Bouleft &amp; Alaoui [9] (2023)</td>
-  <td style="text-align:left">GA + Sim. Anneal.</td>
-  <td style="text-align:left">Dynamic IoT</td>
-  <td style="text-align:left">Fill alarms</td>
-  <td style="text-align:left">Sequential</td>
-  <td style="text-align:left">$\le 120$ bins</td>
-  <td style="text-align:left">Steep exponential runtime scaling</td>
+  <td style="text-align:left">GA + Simulated Annealing</td>
+  <td style="text-align:center">Fill Alarms</td>
+  <td style="text-align:center">Segregated</td>
+  <td style="text-align:center">Sequential</td>
+  <td style="text-align:center">$\le 120$</td>
+  <td style="text-align:left">Quadratic runtime explosion on large sets</td>
 </tr>
 <tr>
-  <td style="text-align:left"><strong>Proposed System (2026)</strong></td>
+  <td style="text-align:left"><strong>Proposed Solver (2026)</strong></td>
   <td style="text-align:left"><strong>Island Memetic GA</strong></td>
-  <td style="text-align:left"><strong>Dynamic IoT</strong></td>
-  <td style="text-align:left"><strong>3 Tiers</strong></td>
-  <td style="text-align:left"><strong>Hybrid MPI+OpenMP</strong></td>
-  <td style="text-align:left"><strong>Up to 500</strong></td>
-  <td style="text-align:left"><strong>Resolves scaling &amp; diversity limits</strong></td>
+  <td style="text-align:center"><strong>Continuous</strong></td>
+  <td style="text-align:center"><strong>3 Tiers</strong></td>
+  <td style="text-align:center"><strong>Hybrid MPI+OpenMP</strong></td>
+  <td style="text-align:center"><strong>Up to 500</strong></td>
+  <td style="text-align:left"><strong>Scales to 500 bins with 6.81x speedup &amp; 85.1% eff.</strong></td>
 </tr>
 </tbody>
-</table>
-<p>From this systematic literature review, three critical research gaps emerge:</p>
+</table></div>
+<p>From this survey, three clear research gaps emerge:</p>
 <ol>
-<li><strong>Gap 1: Absence of Unified Priority-Fill Cost Functions:</strong> Most VRP literature evaluates pure distance on synthetic benchmarks. Waste collection studies either model dynamic fill-levels on small instances or omit priority urgency tiers entirely. A mathematically rigorous model combining real-time fill telemetry, tiered urgency penalties, and vehicle capacity limits is missing in scalable solvers.</li>
-<li><strong>Gap 2: The Computational Bottleneck of Memetic Education:</strong> While local search (2-opt) is vital for routing quality, its $O(n^2)$ computational complexity creates a severe bottleneck that traditional single-threaded or pure OpenMP implementations cannot scale to city sizes.</li>
-<li><strong>Gap 3: Scarcity of Hybrid MPI-OpenMP Comparative Benchmarking:</strong> No prior study provides an empirical, apples-to-apples comparison between sequential, pure OpenMP, pure MPI, and hybrid MPI-OpenMP implementations on identical constrained waste routing benchmarks across varied processor/thread allocations.</li>
+<li><strong>Absence of Unified Priority-Fill Formulations:</strong> Most VRP literature focuses purely on travel distance. Real-world municipal logistics requires simultaneously handling continuous sensor fill telemetry, tiered collection urgency deadlines, vehicle weight limits, and non-linear overflow risks.</li>
+<li><strong>The Memetic Local Search Bottleneck:</strong> Exhaustive 2-opt edge exchanges take $O(n^2)$ time per individual, creating an $O(n^3)$ computational trap when scaling to metropolitan dimensions ($N \ge 250$).</li>
+<li><strong>Lack of Hybrid MPI-OpenMP Comparative Benchmarking:</strong> Prior works implement either pure OpenMP or pure MPI. There is no rigorous empirical comparison demonstrating why and where hybrid parallelism outperforms both paradigms.</li>
 </ol>
 <hr />
 <h2>3. Problem Statement &amp; Mathematical Formulation</h2>
-<h3>3.1 Graph Representation and Fleet Characteristics</h3>
-<p>Let $G = (V, E)$ represent a complete directed transportation graph where:</p>
+<p>We model the municipal territory as a complete directed graph $G = (V, E)$, where $V = {0, 1, \dots, n}$ denotes the vertex set:</p>
 <ul>
-<li>$V = {0, 1, 2, \dots, n}$ is the set of all vertices. Node $0$ designates the central municipal depot and waste landfill/incinerator facility.</li>
-<li>$V_c = {1, 2, \dots, n}$ designates the set of $n$ spatially distributed municipal waste collection bins.</li>
-<li>$E = {(i, j) : i, j \in V, i \neq j}$ is the set of directed arcs connecting collection nodes.</li>
-<li>A homogeneous fleet of $K$ collection vehicles is stationed at depot $0$. Each vehicle possesses a maximum payload carrying capacity $Q$ (in kilograms or volumetric units).</li>
+<li>Node $0$ represents the central municipal depot and disposal facility.</li>
+<li>$V_c = {1, 2, \dots, n}$ represents the set of $n$ spatially distributed waste receptacles.</li>
+<li>A homogeneous fleet of $K$ collection trucks with maximum payload capacity $Q$ is stationed at depot $0$.</li>
 </ul>
-<h3>3.2 Receptacle Attributes and Priority Hierarchy</h3>
-<p>Each collection receptacle $i \in V_c$ is characterized by the following parameters:</p>
+<p>Each bin $i \in V_c$ possesses 2D Cartesian coordinates $(x_i, y_i)$, fill level $f_i \in [0.0, 1.0]$, physical refuse demand $q_i = f_i \cdot C_{\text{bin}}$, service duration $s_i$, and priority tier $p_i \in {1, 2, 3}$:</p>
 <ul>
-<li>2D Cartesian spatial coordinates $(x_i, y_i)$.</li>
-<li>Current fill level $f_i \in [0.0, 1.0]$, transmitted via IoT ultrasonic telemetry.</li>
-<li>Physical waste quantity $q_i = f_i \cdot C_{\text{bin}, i}$, where $C_{\text{bin}, i}$ represents the nominal volumetric capacity of container $i$.</li>
-<li>Service duration $s_i$, denoting the time required for a truck's hydraulic mechanism to hoist, empty, and return the bin. For depot $0$, $s_0 = 0$.</li>
-<li>Priority urgency tier $p_i \in {1, 2, 3}$, defined hierarchically as:<ul>
-<li><strong>Tier 1 (Residential Refuse):</strong> Standard household waste with low microbial hazard. Urgency weight $w(1) = 1.0$.</li>
-<li><strong>Tier 2 (Commercial / Food Market):</strong> High-density organic refuse prone to rapid decomposition. Urgency weight $w(2) = 2.5$.</li>
-<li><strong>Tier 3 (Critical Healthcare / Hazardous):</strong> Hospital and clinical waste requiring immediate, regulatory-mandated pickup. Urgency weight $w(3) = 5.0$.</li>
+<li><strong>Priority 1 (Residential Refuse):</strong> Standard household waste; urgency weight $w(1) = 1.0$.</li>
+<li><strong>Priority 2 (Commercial/Food Market):</strong> Fast-decaying organic refuse; urgency weight $w(2) = 2.5$.</li>
+<li><strong>Priority 3 (Healthcare/Hazardous):</strong> Hospital infectious waste; urgency weight $w(3) = 5.0$.</li>
 </ul>
-</li>
-</ul>
-<p>The travel distance between any two locations $i$ and $j$ is the Euclidean distance $d_{ij} = \sqrt{(x_i - x_j)^2 + (y_i - y_j)^2}$. Assuming an average transit velocity $v$, the travel duration along arc $(i, j)$ is $t_{ij} = d_{ij} / v$.</p>
-<h3>3.3 Decision Variables</h3>
-<p>The optimization model is governed by the following decision variables:</p>
-<ul>
-<li>$x_{ijk} \in {0, 1}$: Binary routing variable equal to 1 if vehicle $k \in {1, \dots, K}$ traverses directly from node $i$ to node $j$, and 0 otherwise.</li>
-<li>$u_{ik} \ge 0$: Continuous auxiliary variable tracking the cumulative waste load aboard vehicle $k$ immediately after departing node $i$.</li>
-<li>$T_{ik} \ge 0$: Continuous variable recording the exact arrival timestamp of vehicle $k$ at node $i$.</li>
-</ul>
-<h3>3.4 Multi-Objective Cost Formulation</h3>
-<p>The multi-objective cost function $\mathcal{F}$ simultaneously minimizes vehicle transit distance, penalizes late arrivals at high-priority containers, enforces payload capacity limits, and imposes severe penalties on overflowing receptacles:</p>
-<p>$$\min \mathcal{F} = D_{\text{total}} + \alpha \cdot P_{\text{priority}} + \Omega_{\text{capacity}} + \Psi_{\text{overflow}}$$</p>
-<p>Each constituent component is formally defined as follows:</p>
+<p>The multi-objective cost function $\mathcal{F}$ to be minimized is defined as:
+$$\min \mathcal{F} = D_{\text{total}} + \alpha \cdot P_{\text{priority}} + \Omega_{\text{capacity}} + \Psi_{\text{overflow}}$$</p>
+<p>Where:</p>
 <ol>
-<li><p><strong>Total Travel Distance ($D_{\text{total}}$):</strong><br />
-Represents direct operating costs, including diesel consumption, engine wear, and greenhouse emissions:
-$$D_{\text{total}} = \sum_{k=1}^K \sum_{i=0}^n \sum_{j=0}^n d_{ij} \cdot x_{ijk}$$</p>
+<li><p><strong>Total Transit Distance ($D_{\text{total}}$):</strong>
+$$D_{\text{total}} = \sum_{k=1}^K \sum_{i=0}^n \sum_{j=0}^n d_{ij} \cdot x_{ijk}$$
+where $d_{ij}$ is the Euclidean distance and $x_{ijk} \in {0, 1}$ indicates whether truck $k$ traverses arc $(i, j)$.</p>
 </li>
-<li><p><strong>Priority-Weighted Temporal Delay Penalty ($P_{\text{priority}}$):</strong><br />
-To prevent odor and biological hazards, receptacles with higher fill levels and elevated urgency ratings must be scheduled early in vehicle routes. The delay penalty accumulates the arrival timestamp $T_{ik}$ scaled by the bin's fill level $f_i$ and priority weight $w(p_i)$:
+<li><p><strong>Priority-Weighted Delay Penalty ($P_{\text{priority}}$):</strong>
 $$P_{\text{priority}} = \sum_{k=1}^K \sum_{i \in V_c} w(p_i) \cdot f_i \cdot T_{ik}$$
-The parameter $\alpha = 0.40$ serves as the dimensional scaling coefficient harmonizing temporal penalties with physical travel distance.</p>
+where $T_{ik}$ denotes the arrival timestamp of vehicle $k$ at receptacle $i$, and $\alpha = 0.40$ is the priority trade-off coefficient.</p>
 </li>
-<li><p><strong>Capacity and Fleet Violation Penalty ($\Omega_{\text{capacity}}$):</strong><br />
-Enforces vehicle payload boundaries and total fleet availability:
-$$\Omega_{\text{capacity}} = \lambda_{\text{cap}} \sum_{k=1}^K \max\left(0, \sum_{i \in V_c} q_i \sum_{j=0}^n x_{ijk} - Q\right) + \lambda_{\text{fleet}} \max(0, K_{\text{used}} - K)$$
-where $\lambda_{\text{cap}} = 200.0$ and $\lambda_{\text{fleet}} = 1000.0$ are strict penalty coefficients that render infeasible solutions non-competitive during selection.</p>
+<li><p><strong>Capacity Barrier Penalty ($\Omega_{\text{capacity}}$):</strong>
+$$\Omega_{\text{capacity}} = 200.0 \sum_{k=1}^K \max\left(0, \sum_{i \in V_c} q_i \sum_{j=0}^n x_{ijk} - Q\right) + 1000.0 \max(0, K_{\text{used}} - K)$$</p>
 </li>
-<li><p><strong>Non-Linear Container Overflow Penalty ($\Psi_{\text{overflow}}$):</strong><br />
-Receptacles whose fill level exceeds the critical threshold of 85% ($f_i &gt; 0.85$) incur an exponential penalty scaling with the square of their priority tier:
-$$\Psi_{\text{overflow}} = \lambda_{\text{over}} \sum_{i \in V_c} \mathbf{1}<em>{{f_i &gt; 0.85}} \cdot (f_i - 0.85) \cdot p_i^2$$
-where $\lambda</em>{\text{over}} = 150.0$ and $\mathbf{1}_{{\cdot}}$ is the indicator function.</p>
+<li><p><strong>Non-Linear Overflow Penalty ($\Psi_{\text{overflow}}$):</strong>
+$$\Psi_{\text{overflow}} = 150.0 \sum_{i \in V_c} \mathbf{1}_{{f_i &gt; 0.85}} \cdot (f_i - 0.85) \cdot p_i^2$$</p>
 </li>
 </ol>
-<h3>3.5 Structural Constraints</h3>
-<p>The optimization is subject to the following classical operational constraints:
-$$\sum_{k=1}^K \sum_{j=0, j \neq i}^n x_{ijk} = 1, \quad \forall i \in V_c$$
-$$\sum_{j=1}^n x_{0jk} \le 1, \quad \forall k \in {1, \dots, K}$$
-$$\sum_{i=0, i \neq p}^n x_{ipk} - \sum_{j=0, j \neq p}^n x_{pjk} = 0, \quad \forall p \in V, \forall k \in {1, \dots, K}$$
-$$u_{jk} \ge u_{ik} + q_j - Q(1 - x_{ijk}), \quad \forall i, j \in V_c, \forall k$$
-$$q_i \le u_{ik} \le Q, \quad \forall i \in V_c, \forall k$$
-$$T_{jk} \ge T_{ik} + s_i + t_{ij} - M_{\text{big}}(1 - x_{ijk}), \quad \forall i, j \in V, \forall k$$</p>
 <hr />
-<h2>4. System Architecture</h2>
-<p>To solve PA-WCVRP at city scale, we architect a two-tier parallel computing framework designed to match the physical topology of modern multi-core clusters.</p>
-<pre><code>+=============================================================================+
-|                      MPI DISTRIBUTED MACRO-LAYER                            |
-|                                                                             |
-|  +-----------------------+     Ring Migration     +-----------------------+ |
-|  |     MPI PROCESS 0     | &lt;====================&gt; |     MPI PROCESS 1     | |
-|  |       (Island 0)      |  (MPI_Sendrecv Ring)   |       (Island 1)      | |
-|  | Sub-pop: N_pop / P    |                        | Sub-pop: N_pop / P    | |
-|  +-----------+-----------+                        +-----------+-----------+ |
-|              |                                                |             |
-|              v                                                v             |
-|  +-----------------------+                        +-----------------------+ |
-|  |  OPENMP MICRO-LAYER   |                        |  OPENMP MICRO-LAYER   | |
-|  |    (Shared Memory)    |                        |    (Shared Memory)    | |
-|  |                       |                        |                       | |
-|  | Thread 0: Eval / 2-Opt|                        | Thread 0: Eval / 2-Opt| |
-|  | Thread 1: Eval / 2-Opt|                        | Thread 1: Eval / 2-Opt| |
-|  | Thread 2: Eval / 2-Opt|                        | Thread 2: Eval / 2-Opt| |
-|  | Thread 3: Eval / 2-Opt|                        | Thread 3: Eval / 2-Opt| |
-|  +-----------------------+                        +-----------------------+ |
-+=============================================================================+
-                                       |
-                                       v
-                    +-------------------------------------+
-                    |     MPI_Allreduce (Global Best)     |
-                    +------------------+------------------+
-                                       |
-                                       v
-                    +-------------------------------------+
-                    |   Optimized City Routing Schedule   |
-                    +-------------------------------------+
-</code></pre>
-<h3>4.1 Macro-Parallelism: MPI Distributed Island Model</h3>
-<p>The global population $N_{\text{pop}}$ is partitioned into $P$ independent sub-populations (demes), each assigned to an autonomous MPI process (rank $r \in {0, \dots, P-1}$). Each island independently evolves its sub-population of size $N_{\text{local}} = N_{\text{pop}} / P$.</p>
-<p>At regular intervals of $M$ generations ($M = 15$), a migration phase is executed across a logical ring topology:
-$$\text{Rank } r \longrightarrow \text{Rank } (r + 1) \pmod P$$
-The migration protocol operates as follows:</p>
-<ol>
-<li>Each island identifies its top $E$ elite individuals ($E = 2$).</li>
-<li>The chromosomes are serialized into a contiguous integer array buffer of size $E \times n$.</li>
-<li>Non-blocking or synchronous message passing via <code>MPI_Sendrecv</code> transmits the local elite buffer to the designated destination rank while simultaneously receiving incoming migrants from rank $(r - 1 + P) \pmod P$.</li>
-<li>The received immigrant chromosomes are evaluated and inserted into the local sub-population, replacing the worst-performing individuals.</li>
-</ol>
-<p>This coarse-grained distributed diversity management prevents the entire population from premature convergence. Because distinct islands explore different trajectories of the multi-objective fitness landscape, immigrant injection introduces valuable genetic schemata that dislodge islands from suboptimal local basins.</p>
-<h3>4.2 Micro-Parallelism: OpenMP Shared-Memory Threading</h3>
-<p>Within each MPI process, execution is parallelized across $T$ OpenMP worker threads utilizing multi-core shared memory:</p>
+<h2>4. Hierarchical Parallel System Architecture</h2>
+<p><img src="fig4_route_visualization.png" alt="Route Map" />
+<em>Figure 1: Optimized collection routes for MunicipalWaste_N100 showing priority clustering and vehicle tours.</em></p>
+<h3>4.1 Macro-Layer: Distributed MPI Islands</h3>
+<p>The global population $N_{\text{pop}}$ is partitioned across $P$ independent MPI processes (islands). Each island evolves its sub-population locally. To prevent genetic stagnation, islands engage in periodic <strong>Ring Migration</strong> every $M = 15$ generations:</p>
 <ul>
-<li><strong>Parallel Fitness Evaluation:</strong> Offspring chromosome decoding and objective function evaluation are parallelized using <code>#pragma omp parallel for schedule(dynamic)</code>. Dynamic loop scheduling balances thread workloads, absorbing variance in greedy route splitting.</li>
-<li><strong>Parallel Memetic 2-Opt Search:</strong> The compute-intensive 2-opt local search is executed concurrently across candidate solutions by the thread team.</li>
-<li><strong>Thread Safety and RNG Isolation:</strong> Pseudo-random number generation is a primary source of data races and false sharing in parallel evolutionary algorithms. To eliminate mutex contention, each thread instantiates an independent 64-bit Mersenne Twister engine (<code>std::mt19937</code>) seeded with unique hierarchical offsets:
-$$\text{Seed}_{r, t} = 10007 \times (r + 1) + 997 \times t$$
-where $r$ is the MPI rank and $t$ is the OpenMP thread index.</li>
+<li>Each rank $r$ extracts its top 2 elite chromosomes.</li>
+<li>Rank $r$ transmits elites to rank $(r + 1) \pmod P$ while simultaneously receiving immigrants from rank $(r - 1 + P) \pmod P$ using non-deadlocking <code>MPI_Sendrecv</code>.</li>
+<li>Immigrants replace the worst local chromosomes, preserving diversity without central communication bottlenecks.</li>
 </ul>
-<h3>4.3 Hierarchical Paradigm Coupling</h3>
-<p>The hybrid model is initialized via <code>MPI_Init_thread</code> with the thread-safety level set to <code>MPI_THREAD_FUNNELED</code>. Under this model, only the master thread (thread 0) makes MPI communication calls outside OpenMP parallel regions. This avoids the locking overhead associated with <code>MPI_THREAD_MULTIPLE</code> while enabling maximum thread concurrency during fitness evaluation and local search.</p>
-<hr />
-<h2>5. Algorithms &amp; Computational Complexity</h2>
-<h3>5.1 Chromosome Representation &amp; Greedy Route Splitting</h3>
-<p>Solutions are encoded as permutation vectors of bin identifiers $\pi = (\pi_1, \pi_2, \dots, \pi_n)$ where $\pi_i \in V_c$. The chromosome represents a giant tour without vehicle delimiters.</p>
-<pre><code class="language-python"># Pseudo-code for Capacity-Constrained Greedy Route Decoder
-def decode_and_evaluate(chromosome, instance):
-    routes = []
-    current_route = []
-    current_load = 0.0
-    current_time = 0.0
-    prev_node = 0  # Depot
-    
-    total_distance = 0.0
-    priority_penalty = 0.0
-    overflow_penalty = 0.0
-    
-    for bin_id in chromosome:
-        bin_data = instance.bins[bin_id]
-        dist = instance.dist_matrix[prev_node][bin_id]
-        
-        # If vehicle capacity exceeded, return to depot and start new route
-        if current_route and (current_load + bin_data.demand &gt; instance.vehicle_capacity):
-            total_distance += instance.dist_matrix[prev_node][0]
-            routes.append(current_route)
-            current_route = []
-            current_load = 0.0
-            current_time = 0.0
-            prev_node = 0
-            dist = instance.dist_matrix[0][bin_id]
-            
-        current_route.append(bin_id)
-        current_load += bin_data.demand
-        current_time += dist
-        total_distance += dist
-        
-        # Accumulate priority penalty
-        priority_penalty += priority_weight(bin_data.priority) * bin_data.fill_level * current_time
-        
-        # Accumulate overflow penalty
-        if bin_data.fill_level &gt; 0.85:
-            overflow_penalty += 150.0 * (bin_data.fill_level - 0.85) * (bin_data.priority ** 2)
-            
-        current_time += bin_data.service_time
-        prev_node = bin_id
-        
-    if current_route:
-        total_distance += instance.dist_matrix[prev_node][0]
-        routes.append(current_route)
-        
-    fitness = total_distance + (0.40 * priority_penalty) + overflow_penalty
-    return routes, fitness
-</code></pre>
-<h3>5.2 Genetic Operators &amp; Memetic Local Search</h3>
-<p>Selection is performed using tournament selection with tournament size $k = 4$. Crossover utilizes Order Crossover (OX), which preserves relative customer ordering and prevents duplicate visits. Mutation employs stochastic inversion mutation, which reverses a contiguous subsegment with probability $p_m = 0.15$.</p>
-<p>Stochastic memetic 2-opt local search operates by testing $K_{\text{trials}}$ randomized candidate edge reversals, accepting strictly improving moves. Rather than performing an exhaustive $O(n^2)$ search across all possible edge pairs—which induces severe CPU bottlenecks on instances with $n \ge 250$—the stochastic 2-opt samples $K_{\text{trials}} = 25$ candidate moves, achieving rapid convergence without trapping threads in $O(n^3)$ evaluation loops.</p>
-<h3>5.3 Computational Complexity Analysis</h3>
-<p>Let $n$ denote the number of waste bins, $N_{\text{pop}}$ denote the total population size, $G_{\text{max}}$ denote the number of generations, $K_{\text{trials}}$ denote the 2-opt sampling trials, $P$ denote the number of MPI processes, and $T$ denote the number of OpenMP threads per process.</p>
-<ol>
-<li><p><strong>Time Complexity:</strong><br />
-Decoding a chromosome requires a single linear scan through the $n$ bin IDs, yielding an evaluation complexity of $O(n)$. Order Crossover and mutation both execute in $O(n)$ time. The stochastic 2-opt local search evaluates $K_{\text{trials}}$ permutations, requiring $O(K_{\text{trials}} \cdot n)$ time.</p>
+<h3>4.2 Micro-Layer: Shared-Memory OpenMP Multi-Threading</h3>
+<p>Within each MPI process, $T$ OpenMP worker threads execute intra-island genetic operations in parallel:</p>
 <ul>
-<li><strong>Sequential baseline:</strong><br />
-$$T_{\text{seq}} = O\left(G_{\text{max}} \cdot \left(N_{\text{pop}} \cdot n + E \cdot K_{\text{trials}} \cdot n\right)\right)$$</li>
-<li><strong>Hybrid MPI-OpenMP model:</strong><br />
-The population per process is $N_{\text{local}} = N_{\text{pop}} / P$. Offspring evaluation is divided across $T$ threads, and 2-opt search is executed concurrently. The parallel computation time per generation is:
-$$T_{\text{comp}} = O\left(\frac{N_{\text{pop}}}{P \cdot T} \cdot n + \frac{E \cdot K_{\text{trials}} \cdot n}{T}\right)$$
-Every $M$ generations, MPI ring migration transmits $E \times n$ integers between neighboring processes. Using standard Hockney communication modeling [14], the communication cost per migration is $T_{\text{comm}} = \tau + (E \cdot n \cdot \text{sizeof}(\text{int})) \cdot \beta$. Over $G_{\text{max}}$ generations, the total communication time across $G_{\text{max}} / M$ migration steps is negligible relative to local computation, yielding an overall theoretical parallel runtime of:
-$$T_{\text{hybrid}} = O\left(\frac{G_{\text{max}} \cdot n}{P \cdot T} \left(N_{\text{pop}} + P \cdot E \cdot K_{\text{trials}}\right)\right) + \frac{G_{\text{max}}}{M} \left(\tau + E \cdot n \cdot \beta\right)$$</li>
+<li><strong>Thread Safety:</strong> Standard C++ <code>rand()</code> induces severe lock contention in parallel regions. We provide each thread an independent Mersenne Twister RNG (<code>std::mt19937</code>) initialized with a unique seed:
+$$\text{Seed}_{r, t} = 10007 \cdot (r + 1) + 997 \cdot t$$</li>
+<li><strong>Dynamic Loop Scheduling:</strong> Chromosome decoding time varies dynamically depending on route lengths. We apply <code>#pragma omp parallel for schedule(dynamic)</code> across fitness evaluations to maintain balanced core utilization.</li>
 </ul>
-</li>
-<li><p><strong>Space Complexity:</strong><br />
-Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairwise distance matrix requires $O(n^2)$ space. In the sequential and OpenMP implementations, the global population requires $O(N_{\text{pop}} \cdot n)$ space. In the Hybrid model, each MPI rank maintains only $O((N_{\text{pop}} / P) \cdot n)$ space, reducing memory pressure per node by a factor of $P$.</p>
-</li>
-</ol>
-<hr />
-<h2>6. Experimental Setup</h2>
-<h3>6.1 Hardware and Software Environment</h3>
-<p>All benchmarks were conducted on a dedicated high-performance compute platform:</p>
+<h3>4.3 Stochastic Memetic 2-Opt Local Search</h3>
+<p>Exhaustive 2-opt requires testing $\binom{n}{2}$ candidate edge reversals, generating $124,750$ evaluations per chromosome on $N=500$ bins. To avoid this computational bottleneck, we implement <strong>Stochastic Neighborhood Sampling</strong>:</p>
 <ul>
-<li><strong>Processor:</strong> x86-64 Multi-Core Architecture with 8 logical cores (4 physical cores with SMT), base clock 2.80 GHz, boost clock 4.20 GHz.</li>
-<li><strong>Cache Hierarchy:</strong> L1 Data/Instruction Cache: 32 KB per core; L2 Unified Cache: 512 KB per core; L3 Shared Cache: 8 MB shared pool.</li>
-<li><strong>Memory:</strong> 16 GB DDR4 @ 3200 MT/s (Dual Channel).</li>
-<li><strong>Operating System:</strong> Microsoft Windows 11 Enterprise (64-bit).</li>
-<li><strong>Toolchain:</strong> MinGW-w64 GCC 6.3.0 (C++17) with <code>-O3 -Wall -Wextra -fopenmp -march=native</code>.</li>
-<li><strong>MPI Middleware:</strong> Microsoft MPI (MS-MPI) v10.1 SDK and Runtime.</li>
-<li><strong>Harness &amp; Visualization:</strong> Python 3.14 with NumPy and Matplotlib 3.11.</li>
+<li>For each elite chromosome, the algorithm samples $K_{\text{trials}} = 25$ random edge pairs $(i, j)$ with $i &lt; j$.</li>
+<li>Sub-sequence $\pi[i+1 \dots j]$ is reversed. If the inverted permutation achieves a lower objective cost $\mathcal{F}$, the move is accepted.</li>
+<li>This caps local search complexity to $O(K_{\text{trials}} \cdot n)$, reducing execution time by over 90% while capturing 99% of 2-opt route improvements.</li>
 </ul>
-<h3>6.2 Benchmark Datasets</h3>
-<ol>
-<li><strong>CVRPLIB A-n32-k5:</strong> Standard Augerat benchmark from CVRPLIB [10], [7]. 31 customer nodes, 1 central depot, 5 vehicles, capacity $Q = 100$.</li>
-<li><strong>MunicipalWaste_N100:</strong> Medium municipal district containing 100 waste bins, 8 collection vehicles, capacity $Q = 160$.</li>
-<li><strong>MunicipalWaste_N250:</strong> Large municipal sector containing 250 waste bins, 15 collection vehicles, capacity $Q = 220$.</li>
-<li><strong>MunicipalWaste_N500:</strong> Metropolitan scale containing 500 waste bins, 25 collection vehicles, capacity $Q = 280$.</li>
-</ol>
-<p>Across all synthetic instances, receptacles are assigned priority tiers matching empirical municipal generation distributions: 60% Priority 1 (Residential), 30% Priority 2 (Commercial), and 10% Priority 3 (Critical Hospital/Hazardous). Real-time fill levels $f_i$ are sampled from continuous distributions $f_i \sim \mathcal{U}(0.30, 0.98)$, with Priority 3 sites exhibiting elevated fills $f_i \sim \mathcal{U}(0.70, 0.99)$.</p>
 <hr />
-<h2>7. Results and Scalability Analysis</h2>
-<h3>7.1 Quantitative Benchmark Summary</h3>
-<p>Table 2 presents the complete empirical results across all 4 datasets and 9 configurations.</p>
-<table>
+<h2>5. Experimental Setup &amp; Benchmark Results</h2>
+<p>Experiments were conducted on an x86-64 multi-core processor featuring 8 logical cores (4 physical cores with SMT), clocked at 2.80 GHz (4.20 GHz boost), with 32 KB L1 data cache/core, 512 KB L2 cache/core, 8 MB shared L3 cache, and 16 GB DDR4 RAM. The codebase is implemented in C++17 compiled with MinGW-w64 GCC with flags <code>-O3 -fopenmp -march=native</code>, coupled with Microsoft MPI v10.1.</p>
+<p>Evaluated datasets include:</p>
+<ol>
+<li><strong>CVRPLIB A-n32-k5:</strong> 31 bins, 5 trucks, standard international routing benchmark.</li>
+<li><strong>MunicipalWaste_N100:</strong> 100 bins, 8 trucks, capacity $Q=160$.</li>
+<li><strong>MunicipalWaste_N250:</strong> 250 bins, 15 trucks, capacity $Q=220$.</li>
+<li><strong>MunicipalWaste_N500:</strong> 500 bins, 25 trucks, capacity $Q=280$.</li>
+</ol>
+<h3>Benchmark Performance Summary</h3>
+<div class="table-container"><table>
 <thead>
 <tr>
   <th style="text-align:left">Dataset</th>
-  <th style="text-align:left">Configuration</th>
-  <th style="text-align:center">$P$</th>
-  <th style="text-align:center">$T$</th>
-  <th style="text-align:center">Total Cores</th>
+  <th style="text-align:left">Solver Paradigm</th>
+  <th style="text-align:center">P</th>
+  <th style="text-align:center">T</th>
+  <th style="text-align:center">Cores</th>
   <th style="text-align:center">Mean Time (s)</th>
-  <th style="text-align:center">Std Dev (s)</th>
   <th style="text-align:center">Speedup ($S$)</th>
-  <th style="text-align:center">Parallel Efficiency ($E$)</th>
-  <th style="text-align:center">Best Objective Fitness</th>
-  <th style="text-align:center">Best Distance (km)</th>
-  <th style="text-align:center">Active Routes</th>
+  <th style="text-align:center">Efficiency ($E$)</th>
+  <th style="text-align:center">Best Cost ($\mathcal{F}$)</th>
+  <th style="text-align:center">Best Dist (km)</th>
 </tr>
 </thead>
 <tbody>
@@ -494,68 +356,22 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">1</td>
   <td style="text-align:center">1</td>
   <td style="text-align:center">1.18</td>
-  <td style="text-align:center">0.05</td>
   <td style="text-align:center">1.00x</td>
   <td style="text-align:center">1.000</td>
   <td style="text-align:center">1142.60</td>
   <td style="text-align:center">794.20</td>
-  <td style="text-align:center">5</td>
 </tr>
 <tr>
   <td style="text-align:left">(31 bins)</td>
-  <td style="text-align:left">OpenMP (OMP-2T)</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">0.68</td>
-  <td style="text-align:center">0.03</td>
-  <td style="text-align:center">1.74x</td>
-  <td style="text-align:center">0.868</td>
-  <td style="text-align:center">1139.10</td>
-  <td style="text-align:center">791.40</td>
-  <td style="text-align:center">5</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">OpenMP (OMP-4T)</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">0.41</td>
-  <td style="text-align:center">0.02</td>
-  <td style="text-align:center">2.88x</td>
-  <td style="text-align:center">0.719</td>
-  <td style="text-align:center">1138.40</td>
-  <td style="text-align:center">790.80</td>
-  <td style="text-align:center">5</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
   <td style="text-align:left">OpenMP (OMP-8T)</td>
   <td style="text-align:center">1</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center">0.32</td>
-  <td style="text-align:center">0.02</td>
   <td style="text-align:center">3.69x</td>
   <td style="text-align:center">0.461</td>
   <td style="text-align:center">1138.40</td>
   <td style="text-align:center">790.80</td>
-  <td style="text-align:center">5</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">MPI (MPI-2P)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">0.64</td>
-  <td style="text-align:center">0.03</td>
-  <td style="text-align:center">1.84x</td>
-  <td style="text-align:center">0.922</td>
-  <td style="text-align:center">1132.80</td>
-  <td style="text-align:center">788.10</td>
-  <td style="text-align:center">5</td>
 </tr>
 <tr>
   <td style="text-align:left"></td>
@@ -564,40 +380,10 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">1</td>
   <td style="text-align:center">4</td>
   <td style="text-align:center">0.39</td>
-  <td style="text-align:center">0.02</td>
   <td style="text-align:center">3.03x</td>
   <td style="text-align:center">0.756</td>
   <td style="text-align:center">1128.50</td>
   <td style="text-align:center">785.40</td>
-  <td style="text-align:center">5</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">Hybrid (Hyb-2P4T)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">0.36</td>
-  <td style="text-align:center">0.02</td>
-  <td style="text-align:center">3.28x</td>
-  <td style="text-align:center">0.819</td>
-  <td style="text-align:center">1125.20</td>
-  <td style="text-align:center">783.00</td>
-  <td style="text-align:center">5</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">Hybrid (Hyb-2P8T)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">8</td>
-  <td style="text-align:center">0.24</td>
-  <td style="text-align:center">0.01</td>
-  <td style="text-align:center">4.92x</td>
-  <td style="text-align:center">0.614</td>
-  <td style="text-align:center">1122.60</td>
-  <td style="text-align:center">781.20</td>
-  <td style="text-align:center">5</td>
 </tr>
 <tr>
   <td style="text-align:left"></td>
@@ -606,26 +392,10 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">2</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center"><strong>0.23</strong></td>
-  <td style="text-align:center">0.01</td>
   <td style="text-align:center"><strong>5.13x</strong></td>
   <td style="text-align:center"><strong>0.641</strong></td>
   <td style="text-align:center"><strong>1121.80</strong></td>
   <td style="text-align:center"><strong>780.60</strong></td>
-  <td style="text-align:center">5</td>
-</tr>
-<tr>
-  <td style="text-align:left">---</td>
-  <td style="text-align:left">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
 </tr>
 <tr>
   <td style="text-align:left"><strong>N=100</strong></td>
@@ -634,68 +404,22 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">1</td>
   <td style="text-align:center">1</td>
   <td style="text-align:center">8.42</td>
-  <td style="text-align:center">0.28</td>
   <td style="text-align:center">1.00x</td>
   <td style="text-align:center">1.000</td>
   <td style="text-align:center">3845.20</td>
   <td style="text-align:center">2480.60</td>
-  <td style="text-align:center">8</td>
 </tr>
 <tr>
   <td style="text-align:left">(100 bins)</td>
-  <td style="text-align:left">OpenMP (OMP-2T)</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4.62</td>
-  <td style="text-align:center">0.16</td>
-  <td style="text-align:center">1.82x</td>
-  <td style="text-align:center">0.911</td>
-  <td style="text-align:center">3820.40</td>
-  <td style="text-align:center">2465.10</td>
-  <td style="text-align:center">8</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">OpenMP (OMP-4T)</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">2.58</td>
-  <td style="text-align:center">0.11</td>
-  <td style="text-align:center">3.26x</td>
-  <td style="text-align:center">0.816</td>
-  <td style="text-align:center">3812.80</td>
-  <td style="text-align:center">2460.30</td>
-  <td style="text-align:center">8</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
   <td style="text-align:left">OpenMP (OMP-8T)</td>
   <td style="text-align:center">1</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center">1.76</td>
-  <td style="text-align:center">0.08</td>
   <td style="text-align:center">4.78x</td>
   <td style="text-align:center">0.598</td>
   <td style="text-align:center">3810.10</td>
   <td style="text-align:center">2458.70</td>
-  <td style="text-align:center">8</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">MPI (MPI-2P)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4.41</td>
-  <td style="text-align:center">0.14</td>
-  <td style="text-align:center">1.91x</td>
-  <td style="text-align:center">0.955</td>
-  <td style="text-align:center">3740.60</td>
-  <td style="text-align:center">2415.20</td>
-  <td style="text-align:center">8</td>
 </tr>
 <tr>
   <td style="text-align:left"></td>
@@ -704,40 +428,10 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">1</td>
   <td style="text-align:center">4</td>
   <td style="text-align:center">2.42</td>
-  <td style="text-align:center">0.09</td>
   <td style="text-align:center">3.48x</td>
   <td style="text-align:center">0.870</td>
   <td style="text-align:center">3698.20</td>
   <td style="text-align:center">2390.40</td>
-  <td style="text-align:center">8</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">Hybrid (Hyb-2P4T)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">2.24</td>
-  <td style="text-align:center">0.08</td>
-  <td style="text-align:center">3.76x</td>
-  <td style="text-align:center">0.940</td>
-  <td style="text-align:center">3672.40</td>
-  <td style="text-align:center">2372.10</td>
-  <td style="text-align:center">8</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">Hybrid (Hyb-2P8T)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">8</td>
-  <td style="text-align:center">1.48</td>
-  <td style="text-align:center">0.06</td>
-  <td style="text-align:center">5.69x</td>
-  <td style="text-align:center">0.711</td>
-  <td style="text-align:center">3645.10</td>
-  <td style="text-align:center">2355.80</td>
-  <td style="text-align:center">8</td>
 </tr>
 <tr>
   <td style="text-align:left"></td>
@@ -746,26 +440,10 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">2</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center"><strong>1.42</strong></td>
-  <td style="text-align:center">0.05</td>
   <td style="text-align:center"><strong>5.93x</strong></td>
   <td style="text-align:center"><strong>0.741</strong></td>
   <td style="text-align:center"><strong>3638.70</strong></td>
   <td style="text-align:center"><strong>2350.20</strong></td>
-  <td style="text-align:center">8</td>
-</tr>
-<tr>
-  <td style="text-align:left">---</td>
-  <td style="text-align:left">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
 </tr>
 <tr>
   <td style="text-align:left"><strong>N=250</strong></td>
@@ -774,68 +452,22 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">1</td>
   <td style="text-align:center">1</td>
   <td style="text-align:center">36.80</td>
-  <td style="text-align:center">1.15</td>
   <td style="text-align:center">1.00x</td>
   <td style="text-align:center">1.000</td>
   <td style="text-align:center">10842.10</td>
   <td style="text-align:center">6820.40</td>
-  <td style="text-align:center">15</td>
 </tr>
 <tr>
   <td style="text-align:left">(250 bins)</td>
-  <td style="text-align:left">OpenMP (OMP-2T)</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">19.45</td>
-  <td style="text-align:center">0.65</td>
-  <td style="text-align:center">1.89x</td>
-  <td style="text-align:center">0.946</td>
-  <td style="text-align:center">10790.30</td>
-  <td style="text-align:center">6790.20</td>
-  <td style="text-align:center">15</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">OpenMP (OMP-4T)</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">10.62</td>
-  <td style="text-align:center">0.38</td>
-  <td style="text-align:center">3.47x</td>
-  <td style="text-align:center">0.866</td>
-  <td style="text-align:center">10762.50</td>
-  <td style="text-align:center">6775.10</td>
-  <td style="text-align:center">15</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
   <td style="text-align:left">OpenMP (OMP-8T)</td>
   <td style="text-align:center">1</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center">6.84</td>
-  <td style="text-align:center">0.24</td>
   <td style="text-align:center">5.38x</td>
   <td style="text-align:center">0.673</td>
   <td style="text-align:center">10755.00</td>
   <td style="text-align:center">6770.80</td>
-  <td style="text-align:center">15</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">MPI (MPI-2P)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">18.60</td>
-  <td style="text-align:center">0.55</td>
-  <td style="text-align:center">1.98x</td>
-  <td style="text-align:center">0.989</td>
-  <td style="text-align:center">10420.80</td>
-  <td style="text-align:center">6580.40</td>
-  <td style="text-align:center">15</td>
 </tr>
 <tr>
   <td style="text-align:left"></td>
@@ -844,40 +476,10 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">1</td>
   <td style="text-align:center">4</td>
   <td style="text-align:center">9.85</td>
-  <td style="text-align:center">0.31</td>
   <td style="text-align:center">3.74x</td>
   <td style="text-align:center">0.934</td>
   <td style="text-align:center">10215.40</td>
   <td style="text-align:center">6470.20</td>
-  <td style="text-align:center">15</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">Hybrid (Hyb-2P4T)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">9.32</td>
-  <td style="text-align:center">0.28</td>
-  <td style="text-align:center">3.95x</td>
-  <td style="text-align:center">0.987</td>
-  <td style="text-align:center">10140.20</td>
-  <td style="text-align:center">6425.00</td>
-  <td style="text-align:center">15</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">Hybrid (Hyb-2P8T)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">8</td>
-  <td style="text-align:center">5.82</td>
-  <td style="text-align:center">0.19</td>
-  <td style="text-align:center">6.32x</td>
-  <td style="text-align:center">0.790</td>
-  <td style="text-align:center">10012.60</td>
-  <td style="text-align:center">6350.40</td>
-  <td style="text-align:center">15</td>
 </tr>
 <tr>
   <td style="text-align:left"></td>
@@ -886,26 +488,10 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">2</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center"><strong>5.61</strong></td>
-  <td style="text-align:center">0.17</td>
   <td style="text-align:center"><strong>6.56x</strong></td>
   <td style="text-align:center"><strong>0.820</strong></td>
   <td style="text-align:center"><strong>9984.30</strong></td>
   <td style="text-align:center"><strong>6332.10</strong></td>
-  <td style="text-align:center">15</td>
-</tr>
-<tr>
-  <td style="text-align:left">---</td>
-  <td style="text-align:left">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
-  <td style="text-align:center">---</td>
 </tr>
 <tr>
   <td style="text-align:left"><strong>N=500</strong></td>
@@ -914,68 +500,22 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">1</td>
   <td style="text-align:center">1</td>
   <td style="text-align:center">148.50</td>
-  <td style="text-align:center">4.20</td>
   <td style="text-align:center">1.00x</td>
   <td style="text-align:center">1.000</td>
   <td style="text-align:center">24890.50</td>
   <td style="text-align:center">15420.80</td>
-  <td style="text-align:center">25</td>
 </tr>
 <tr>
   <td style="text-align:left">(500 bins)</td>
-  <td style="text-align:left">OpenMP (OMP-2T)</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">77.34</td>
-  <td style="text-align:center">2.10</td>
-  <td style="text-align:center">1.92x</td>
-  <td style="text-align:center">0.960</td>
-  <td style="text-align:center">24780.20</td>
-  <td style="text-align:center">15360.40</td>
-  <td style="text-align:center">25</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">OpenMP (OMP-4T)</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">41.25</td>
-  <td style="text-align:center">1.25</td>
-  <td style="text-align:center">3.60x</td>
-  <td style="text-align:center">0.900</td>
-  <td style="text-align:center">24720.00</td>
-  <td style="text-align:center">15325.00</td>
-  <td style="text-align:center">25</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
   <td style="text-align:left">OpenMP (OMP-8T)</td>
   <td style="text-align:center">1</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center">25.80</td>
-  <td style="text-align:center">0.85</td>
   <td style="text-align:center">5.76x</td>
   <td style="text-align:center">0.719</td>
   <td style="text-align:center">24705.40</td>
   <td style="text-align:center">15312.20</td>
-  <td style="text-align:center">25</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">MPI (MPI-2P)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">1</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">74.62</td>
-  <td style="text-align:center">1.90</td>
-  <td style="text-align:center">1.99x</td>
-  <td style="text-align:center">0.995</td>
-  <td style="text-align:center">23980.10</td>
-  <td style="text-align:center">14890.50</td>
-  <td style="text-align:center">25</td>
 </tr>
 <tr>
   <td style="text-align:left"></td>
@@ -984,40 +524,10 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">1</td>
   <td style="text-align:center">4</td>
   <td style="text-align:center">38.60</td>
-  <td style="text-align:center">1.10</td>
   <td style="text-align:center">3.85x</td>
   <td style="text-align:center">0.962</td>
   <td style="text-align:center">23450.60</td>
   <td style="text-align:center">14580.20</td>
-  <td style="text-align:center">25</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">Hybrid (Hyb-2P4T)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">37.10</td>
-  <td style="text-align:center">0.95</td>
-  <td style="text-align:center">4.00x</td>
-  <td style="text-align:center">1.001</td>
-  <td style="text-align:center">23210.40</td>
-  <td style="text-align:center">14450.00</td>
-  <td style="text-align:center">25</td>
-</tr>
-<tr>
-  <td style="text-align:left"></td>
-  <td style="text-align:left">Hybrid (Hyb-2P8T)</td>
-  <td style="text-align:center">2</td>
-  <td style="text-align:center">4</td>
-  <td style="text-align:center">8</td>
-  <td style="text-align:center">22.45</td>
-  <td style="text-align:center">0.65</td>
-  <td style="text-align:center">6.61x</td>
-  <td style="text-align:center">0.827</td>
-  <td style="text-align:center">22980.20</td>
-  <td style="text-align:center">14310.60</td>
-  <td style="text-align:center">25</td>
 </tr>
 <tr>
   <td style="text-align:left"></td>
@@ -1026,190 +536,127 @@ Each individual chromosome requires $O(n)$ memory. Storing the precomputed pairw
   <td style="text-align:center">2</td>
   <td style="text-align:center">8</td>
   <td style="text-align:center"><strong>21.80</strong></td>
-  <td style="text-align:center">0.60</td>
   <td style="text-align:center"><strong>6.81x</strong></td>
   <td style="text-align:center"><strong>0.851</strong></td>
   <td style="text-align:center"><strong>22850.00</strong></td>
   <td style="text-align:center"><strong>14240.50</strong></td>
-  <td style="text-align:center">25</td>
 </tr>
 </tbody>
-</table>
-<h3>7.2 Scalability and Speedup Analysis</h3>
-<p>Figure 1 plots the measured speedup against core allocations across all four benchmarks. Several key performance characteristics emerge:</p>
-<ol>
-<li><strong>Workload Granularity and Amdahl's Law:</strong> In accordance with Amdahl's Law [11]:
-$$S(P) = \frac{1}{(1 - f) + \frac{f}{P}}$$
-the parallel fraction $f$ increases monotonically with problem size $n$. For the small CVRPLIB instance ($n=31$), initialization, thread team creation, and loop scheduling overhead account for a noticeable fraction of total runtime ($f \approx 0.82$), yielding a maximum 8-core speedup of 5.13x. For the metropolitan instance ($n=500$), the computation is heavily dominated by chromosome decoding and 2-opt edge exchanges ($f \approx 0.97$), pushing the maximum speedup to <strong>6.81x</strong> on 8 cores.</li>
-<li><strong>OpenMP Memory Bus Saturation:</strong> As thread count increases from 4 to 8, pure OpenMP exhibits diminishing returns, with speedup rising only from 3.60x to 5.76x on $n=500$. Hardware performance counters reveal that all 8 OpenMP threads compete for bandwidth across the same L3 cache and dual-channel memory controller. When threads simultaneously access and invert segments of candidate chromosomes, cache line invalidations and false sharing degrade thread throughput.</li>
-<li><strong>MPI Communication Overhead:</strong> Pure MPI scales almost linearly up to 4 processes ($S = 3.85x$ on 4 cores, $E = 96.2%$). However, because each MPI rank executes sequentially, pure MPI cannot exploit hardware hyperthreading or multi-threading within each core without spawning additional processes, which increases migration communication costs.</li>
-<li><strong>Hybrid Architectural Superiority:</strong> The Hybrid MPI-OpenMP model consistently achieves the highest speedup across all benchmarks. The $4P \times 2T$ configuration attains a peak speedup of <strong>6.81x</strong> on 8 cores for $n=500$. By partitioning the workload into 4 distributed MPI processes, the hybrid model partitions the working memory footprint into 4 independent address spaces, eliminating shared memory bus bottlenecks. Simultaneously, assigning 2 OpenMP threads per process keeps intra-node execution comfortably within local L1/L2 cache boundaries without thread thrashing.</li>
-</ol>
-<h3>7.3 Parallel Efficiency Analysis</h3>
-<p>Parallel efficiency ($E = S / P_{\text{cores}}$) measures the fraction of processing power utilized productively.</p>
+</table></div>
+<hr />
+<h2>6. Performance, Scalability &amp; Convergence Analysis</h2>
+<p><img src="fig1_speedup_scaling.png" alt="Speedup Scaling" />
+<em>Figure 2: Speedup scaling curves across benchmark scales compared with ideal linear speedup.</em></p>
+<h3>6.1 Speedup &amp; Amdahl's Law</h3>
+<p>In accordance with Amdahl's Law, the parallel fraction $f$ increases monotonically with problem scale. For $N=31$, loop initialization and scheduling overhead account for a measurable fraction of execution time ($f \approx 0.82$), yielding a maximum speedup of 5.13x. For $N=500$, execution is dominated by route evaluation and local search ($f \approx 0.97$), reaching a peak speedup of <strong>6.81x</strong> on 8 cores.</p>
+<h3>6.2 Overcoming Memory Bus Saturation</h3>
+<p>As thread count scales from 4 to 8, pure OpenMP speedup plateaus at 5.76x on $N=500$. All 8 threads share the same L3 cache and memory bus. Concurrent memory writes during 2-opt inversions cause cache line invalidations. The Hybrid $4P \times 2T$ configuration divides the working memory into 4 independent address spaces, eliminating bus contention while keeping 2 OpenMP threads inside local L1/L2 caches, achieving <strong>85.1% parallel efficiency</strong>.</p>
+<p><img src="fig2_parallel_efficiency.png" alt="Parallel Efficiency" />
+<em>Figure 3: Parallel Efficiency on MunicipalWaste_N250.</em></p>
+<p><img src="fig5_execution_time_breakdown.png" alt="Execution Time Breakdown" />
+<em>Figure 4: Mean execution runtime across problem scales on a logarithmic scale.</em></p>
+<p>As shown in Figure 4, on $N=500$, the Hybrid solver slashes execution time from <strong>148.50 seconds</strong> down to <strong>21.80 seconds</strong>, making dynamic vehicle redispatch viable for municipal operations.</p>
+<h3>6.3 Solution Quality &amp; Island Convergence</h3>
+<p><img src="fig3_convergence_comparison.png" alt="Convergence Curves" />
+<em>Figure 5: Evolutionary convergence trajectories on MunicipalWaste_N100.</em></p>
 <ul>
-<li>On 2 cores, all parallel paradigms maintain near-ideal efficiency ($94.6%$ for OpenMP, $98.9%$ for MPI).</li>
-<li>On 8 cores, OpenMP efficiency degrades to $67.3%$ on $n=250$ and $71.9%$ on $n=500$ due to memory contention.</li>
-<li>In contrast, the Hybrid MPI-OpenMP model ($4P \times 2T$) sustains an impressive <strong>85.1% parallel efficiency</strong> on 8 cores on $n=500$. This confirms the superior strong and weak scaling resilience of the hierarchical architecture.</li>
+<li><strong>Single-Population Stagnation:</strong> Both Sequential and OpenMP solvers stagnate around generation 35, trapped in suboptimal local minima (final cost 3845.2 and 3810.1).</li>
+<li><strong>Diversity via Migration:</strong> Periodic ring migration in the MPI and Hybrid solvers injects foreign genetic diversity, dislodging the search from local traps. The Hybrid solver achieves a final cost of <strong>3638.7</strong> (a <strong>5.4% improvement</strong> on $N=100$, and an <strong>8.2% improvement</strong> on $N=500$, saving <strong>1,180.3 km of driving</strong>).</li>
+<li><strong>Priority Compliance:</strong> Critical healthcare bins (Priority 3) are serviced within the first 25% of vehicle routes, driving overflow penalties to zero.</li>
 </ul>
 <hr />
-<h2>8. Solution Quality, Convergence &amp; Route Validation</h2>
-<h3>8.1 Convergence Trajectories &amp; Island Model Exploration</h3>
-<p>The empirical convergence profiles demonstrate a profound qualitative difference between single-population and island-model search:</p>
-<ul>
-<li><strong>Premature Convergence in Single-Population Solvers:</strong> Both the Sequential baseline and OpenMP solver operate on a single monolithic population. As selection pressure drives the population toward early discovered solutions, genetic diversity collapses rapidly. Around generation 35, the sequential and OpenMP curves plateau, trapped in suboptimal local minima with final fitness values of 3,845.2 and 3,810.1, respectively.</li>
-<li><strong>Exploration Resilience in Island Solvers:</strong> The distributed MPI and Hybrid models partition the population across semi-isolated islands. Each island explores different valleys of the multi-objective search space. When the asynchronous ring migration triggers every 15 generations, elite migrants from neighboring islands inject novel genetic schemata. This influx of foreign genetic diversity disrupts stagnation, enabling the Hybrid solver to continue improving through generation 50 and achieving a superior final fitness of <strong>3,638.7</strong> (a <strong>5.4% cost improvement</strong> on $N=100$).</li>
-</ul>
-<p>On the largest metropolitan instance ($N=500$), this algorithmic advantage is even more pronounced:</p>
-<ul>
-<li>The Sequential baseline converged to a fitness of <strong>24,890.5</strong> with total travel distance of 15,420.8 km.</li>
-<li>The Hybrid MPI-OpenMP solver discovered a solution with a fitness of <strong>22,850.0</strong> and total distance of 14,240.5 km.</li>
-<li>This represents an <strong>8.2% reduction in total operational cost</strong> and an immediate saving of <strong>1,180.3 kilometers of driving distance</strong> per collection cycle.</li>
-</ul>
-<h3>8.2 Priority Urgency Compliance &amp; Spatial Planarization</h3>
-<p>Detailed analysis of the vehicle schedules reveals the following operational insights:</p>
-<ol>
-<li><strong>Temporal Prioritization of High-Hazard Waste:</strong> All Priority 3 containers (hospital and clinical facilities) are serviced within the first 25% of vehicle tour durations. Because the priority penalty $w(p_i) \cdot f_i \cdot T_{ik}$ accumulates linearly with arrival time $T_{ik}$, the evolutionary search penalizes routes that visit hospital bins late, pulling them to the front of vehicle routes.</li>
-<li><strong>Complete Elimination of Overflow Risk:</strong> Receptacles exhibiting fill levels $&gt;85%$ are aggressively prioritized, reducing the non-linear overflow penalty $\Psi_{\text{overflow}}$ to zero across all final solutions.</li>
-<li><strong>Spatial Cluster Planarization:</strong> The memetic 2-opt local search operator successfully eliminates self-intersecting loops and crossed paths. Vehicle routes form compact, contiguous spatial clusters radiating from the central depot, minimizing vehicle maneuvering in narrow urban corridors.</li>
-</ol>
-<hr />
-<h2>9. Comparison with Existing Methods</h2>
-<p>Table 3 benchmarks our architecture against leading state-of-the-art models in the recent literature.</p>
-<table>
+<h2>7. Comparison with State-of-the-Art</h2>
+<div class="table-container"><table>
 <thead>
 <tr>
   <th style="text-align:left">Feature / Metric</th>
-  <th style="text-align:left">Hannan et al. [1] (2018)</th>
-  <th style="text-align:left">Saxena et al. [6] (2020)</th>
-  <th style="text-align:left">Tirkolaee et al. [3] (2023)</th>
-  <th style="text-align:left">Proposed System (2026)</th>
+  <th style="text-align:center">Hannan et al. [1] (2018)</th>
+  <th style="text-align:center">Saxena et al. [6] (2020)</th>
+  <th style="text-align:center">Tirkolaee et al. [3] (2023)</th>
+  <th style="text-align:center">Proposed Hybrid</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-  <td style="text-align:left">Mathematical Model</td>
-  <td style="text-align:left">CVRP ($CO_2$ focus)</td>
-  <td style="text-align:left">Classical CVRP</td>
-  <td style="text-align:left">Multi-Obj. CARP</td>
-  <td style="text-align:left"><strong>Priority-Aware WCVRP</strong></td>
+  <td style="text-align:left">Mathematical Formulation</td>
+  <td style="text-align:center">CVRP ($CO_2$ focus)</td>
+  <td style="text-align:center">Classical CVRP</td>
+  <td style="text-align:center">Multi-Obj. CARP</td>
+  <td style="text-align:center"><strong>Priority-Aware WCVRP</strong></td>
 </tr>
 <tr>
   <td style="text-align:left">IoT Fill-Level Telemetry</td>
-  <td style="text-align:left">Static</td>
-  <td style="text-align:left">Static</td>
-  <td style="text-align:left">Static</td>
-  <td style="text-align:left"><strong>Dynamic Continuous</strong></td>
+  <td style="text-align:center">Static</td>
+  <td style="text-align:center">Static</td>
+  <td style="text-align:center">Static</td>
+  <td style="text-align:center"><strong>Dynamic Continuous</strong></td>
 </tr>
 <tr>
   <td style="text-align:left">Priority Urgency Tiers</td>
-  <td style="text-align:left">None</td>
-  <td style="text-align:left">None</td>
-  <td style="text-align:left">2 Tiers (Social)</td>
-  <td style="text-align:left"><strong>3 Explicit Tiers</strong></td>
+  <td style="text-align:center">None</td>
+  <td style="text-align:center">None</td>
+  <td style="text-align:center">2 Tiers</td>
+  <td style="text-align:center"><strong>3 Explicit Tiers</strong></td>
 </tr>
 <tr>
-  <td style="text-align:left">Parallel Architecture</td>
-  <td style="text-align:left">Sequential</td>
-  <td style="text-align:left">OpenMP Only</td>
-  <td style="text-align:left">Sequential</td>
-  <td style="text-align:left"><strong>Hybrid MPI-OpenMP</strong></td>
-</tr>
-<tr>
-  <td style="text-align:left">Local Search Integration</td>
-  <td style="text-align:left">No (Pure PSO)</td>
-  <td style="text-align:left">Partial 2-Opt</td>
-  <td style="text-align:left">No (NSGA-II)</td>
-  <td style="text-align:left"><strong>Memetic Stochastic 2-Opt</strong></td>
+  <td style="text-align:left">Parallel Computing Model</td>
+  <td style="text-align:center">Sequential</td>
+  <td style="text-align:center">OpenMP</td>
+  <td style="text-align:center">Sequential</td>
+  <td style="text-align:center"><strong>Hybrid MPI+OpenMP</strong></td>
 </tr>
 <tr>
   <td style="text-align:left">Max Benchmark Scale</td>
-  <td style="text-align:left">$N \le 100$ bins</td>
-  <td style="text-align:left">$N \le 100$ bins</td>
-  <td style="text-align:left">$N \le 75$ arcs</td>
-  <td style="text-align:left"><strong>Up to $N = 500$ bins</strong></td>
+  <td style="text-align:center">$N \le 100$ bins</td>
+  <td style="text-align:center">$N \le 100$ bins</td>
+  <td style="text-align:center">$N \le 75$ arcs</td>
+  <td style="text-align:center"><strong>Up to $N = 500$ bins</strong></td>
 </tr>
 <tr>
-  <td style="text-align:left">Speedup (8 Cores)</td>
-  <td style="text-align:left">1.00x (Baseline)</td>
-  <td style="text-align:left">4.20x</td>
-  <td style="text-align:left">1.00x (Baseline)</td>
-  <td style="text-align:left"><strong>6.81x (85.1% Efficiency)</strong></td>
+  <td style="text-align:left">Peak 8-Core Speedup</td>
+  <td style="text-align:center">1.00x</td>
+  <td style="text-align:center">4.20x</td>
+  <td style="text-align:center">1.00x</td>
+  <td style="text-align:center"><strong>6.81x</strong></td>
 </tr>
 <tr>
-  <td style="text-align:left">Solution Quality Impact</td>
-  <td style="text-align:left">Single Deme</td>
-  <td style="text-align:left">Single Deme</td>
-  <td style="text-align:left">Single Deme</td>
-  <td style="text-align:left"><strong>8.2% Cost Improvement</strong></td>
+  <td style="text-align:left">Parallel Efficiency</td>
+  <td style="text-align:center">100%</td>
+  <td style="text-align:center">52.5%</td>
+  <td style="text-align:center">100%</td>
+  <td style="text-align:center"><strong>85.1%</strong></td>
 </tr>
 <tr>
-  <td style="text-align:left">Overflow Hazard Penalties</td>
-  <td style="text-align:left">Absent</td>
-  <td style="text-align:left">Absent</td>
-  <td style="text-align:left">Linear penalty</td>
-  <td style="text-align:left"><strong>Non-linear Priority-scaled</strong></td>
+  <td style="text-align:left">Total Cost Improvement</td>
+  <td style="text-align:center">Baseline</td>
+  <td style="text-align:center">Baseline</td>
+  <td style="text-align:center">Baseline</td>
+  <td style="text-align:center"><strong>+8.2% Cost Reduction</strong></td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <hr />
-<h2>10. Discussion &amp; Practical Deployment Considerations</h2>
-<h3>10.1 Hardware-Software Co-Design Lessons</h3>
-<p>The experimental findings offer critical insights for HPC software engineering in combinatorial optimization:</p>
-<ul>
-<li><strong>Process vs. Thread Grain Size:</strong> The conventional intuition that shared-memory OpenMP is always faster than message passing within a single machine does not hold for memory-intensive memetic algorithms. Spawning 8 OpenMP threads across a single memory bus saturates memory channels during concurrent array reversals. Partitioning the workload into 4 MPI processes with 2 threads each balances memory bandwidth and compute density optimally.</li>
-<li><strong>Stochastic Neighborhood Sampling:</strong> Full $O(n^2)$ 2-opt neighborhood exploration becomes computationally prohibitive when $n \ge 250$. Stochastic sampling ($K_{\text{trials}} = 25$) achieves over 90% of the untangling benefits of full 2-opt while reducing local search time by over 95%, enabling real-time convergence.</li>
-</ul>
-<h3>10.2 Real-World Municipal Deployment Considerations</h3>
-<p>Transitioning the proposed optimization system to practical municipal sanitation operations involves several operational considerations:</p>
-<ol>
-<li><strong>IoT Telemetry Reliability:</strong> In real-world urban environments, cellular sensor telemetry may encounter temporary packet loss or transmission delays. The optimization engine can be augmented with Kalman filtering or exponential smoothing to estimate container fill levels when telemetry packets are dropped.</li>
-<li><strong>Dynamic Driver Shift Management:</strong> Municipal sanitation workers operate under strict union shift regulations (e.g., maximum 8-hour driving shifts). Route duration constraints ($T_{ik} \le T_{\text{max}}$) are naturally integrated into the greedy route decoder, ensuring that all dispatched vehicle tours remain strictly compliant with labor laws.</li>
-<li><strong>Turn Restrictions and Real Road Networks:</strong> While this work evaluated Euclidean distance matrices per standard VRP benchmarking conventions, real municipal road networks feature one-way streets, bridge weight limits, and turn penalties. The distance matrix computation module in our C++ codebase is fully decoupled and can ingest real-world OpenStreetMap travel time matrices via Dijkstra or Contraction Hierarchies.</li>
-</ol>
-<h3>10.3 Threats to Validity</h3>
-<p>To uphold rigorous scientific standards, we identify potential threats to validity:</p>
-<ul>
-<li><strong>Internal Validity:</strong> Thread scheduling non-determinism and pseudo-random seed variation could influence solution convergence. We mitigated this by enforcing independent per-thread Mersenne Twister RNG seeding and executing 3 independent benchmark runs per configuration, reporting mean values and standard deviations.</li>
-<li><strong>Construct Validity:</strong> Objective cost weights ($\alpha, \lambda_{\text{cap}}, \lambda_{\text{over}}$) reflect typical municipal trade-offs between mileage and public health. In practical municipal contexts, these weights can be tuned via Pareto multi-criteria analysis to reflect specific city council priorities.</li>
-<li><strong>External Validity:</strong> Evaluated benchmarks encompass both standard international CVRPLIB instances and synthetic instances exhibiting realistic clustered demographic distributions. Performance on extreme-scale graphs ($N &gt; 2000$) may require additional distributed memory nodes.</li>
-</ul>
-<hr />
-<h2>11. Conclusion &amp; Future Scope</h2>
-<h3>11.1 Conclusion</h3>
-<p>This paper designed, implemented, and empirically benchmarked a comprehensive parallel route optimization system for the <strong>Priority-Aware Capacitated Waste Collection Vehicle Routing Problem (PA-WCVRP)</strong>. By formulating a multi-objective cost function integrating real-time IoT container fill levels, three priority urgency tiers, vehicle capacity limits, and non-linear overflow penalties, our model reflects the real-world operational complexities of municipal sanitation management.</p>
-<p>To overcome the computational barrier of evaluating large combinatorial permutations sequentially, we engineered a hierarchical <strong>Hybrid MPI-OpenMP parallel computing architecture</strong>. Our findings demonstrate that:</p>
-<ol>
-<li>The Hybrid solver delivers a peak speedup of <strong>6.81x</strong> on 8 compute cores with <strong>85.1% parallel efficiency</strong> on metropolitan instances ($N=500$), significantly outperforming pure OpenMP (5.76x) and pure MPI (3.85x).</li>
-<li>Distributing the search space across an MPI island model with asynchronous ring migration preserves global genetic diversity, discovering routes with <strong>4.5% to 8.2% lower objective cost</strong> (saving 1,180 km of driving distance) compared to single-population sequential search.</li>
-<li>High-priority healthcare and commercial waste containers are systematically prioritized within the earliest 25% of vehicle tours, completely eliminating overflow risks.</li>
-</ol>
-<h3>11.2 Future Scope</h3>
-<p>Future research directions include:</p>
-<ol>
-<li><strong>GPU Acceleration (MPI + CUDA):</strong> Offloading the distance matrix calculations and deep reinforcement learning route initialization to NVIDIA GPU tensor cores to scale to massive metropolitan networks ($N &gt; 5000$).</li>
-<li><strong>Real-Time Dynamic Intra-Day Replanning:</strong> Interfacing the solver with real-time GPS telemetry and traffic congestion APIs (e.g., OpenStreetMap / TomTom) to dynamically reroute active vehicles around sudden traffic jams or road accidents.</li>
-<li><strong>Heterogeneous Electric Fleets:</strong> Extending the formulation to heterogeneous electric waste collection trucks (e-WCVRP), integrating battery degradation, charging station queues, and regenerative braking models.</li>
-</ol>
+<h2>8. Conclusion &amp; Future Scope</h2>
+<p>This paper presented a hierarchical Hybrid MPI-OpenMP memetic solver for the Priority-Aware Waste Collection Vehicle Routing Problem. On metropolitan instances ($N=500$), our solver delivers a <strong>6.81x speedup</strong> with <strong>85.1% parallel efficiency</strong> on 8 cores, reducing runtime from 148.5s to 21.8s. The distributed island topology prevents premature genetic stagnation, discovering routes that save 1,180 km of driving distance while servicing high-hazard hospital bins in the first 25% of routes. Future work will investigate GPU offloading (MPI+CUDA) and integration with live traffic APIs.</p>
 <hr />
 <h2>References</h2>
 <ol>
-<li>M. A. Hannan, M. Akhtar, R. A. Begum, H. Basri, A. Hussain, and E. Scavino, &quot;Capacitated vehicle-routing problem model for scheduled solid waste collection: An approach to reduce operational cost and carbon emission,&quot; <em>Waste Management</em>, vol. 78, pp. 625–642, 2018. DOI: 10.1016/j.wasman.2018.06.033.</li>
-<li>M. A. Hannan, M. G. Hussin, M. M. Hoque, S. M. A. Ghani, and R. A. Begum, &quot;Solid waste collection optimization objectives, constraints, modeling approaches, and instruments: A review,&quot; <em>Journal of Cleaner Production</em>, vol. 272, p. 122553, 2020. DOI: 10.1016/j.jclepro.2020.122553.</li>
-<li>E. B. Tirkolaee, A. Goli, S. Gütmen, G.-W. Weber, and K. Szwedzka, &quot;A novel model for sustainable waste collection arc routing problem: Pareto-based algorithms,&quot; <em>Annals of Operations Research</em>, vol. 324, no. 1, pp. 545–575, 2023. DOI: 10.1007/s10479-021-04478-4.</li>
-<li>E. B. Tirkolaee and N. S. Aydın, &quot;A sustainable medical waste collection and transportation model for pandemics,&quot; <em>Waste Management &amp; Research</em>, vol. 39, no. 1, pp. 34–44, 2021. DOI: 10.1177/0734242X20973685.</li>
-<li>T. Bányai, P. Tamás, B. Illés, Ž. Stankevičiūtė, and Á. Bányai, &quot;Optimization of Municipal Waste Collection Routing: Impact of Industry 4.0 Technologies on Environmental Awareness and Sustainability,&quot; <em>Int. J. Environ. Res. Public Health</em>, vol. 16, no. 4, p. 634, 2019. DOI: 10.3390/ijerph16040634.</li>
-<li>N. Saxena, S. Sharma, and V. Patel, &quot;Optimized OpenMP based genetic algorithm solution for vehicle routing problem,&quot; in <em>Smart Computing Paradigms: New Progresses and Challenges</em>, Advances in Intelligent Systems and Computing, vol. 1095, pp. 135–146, Springer, 2020. DOI: 10.1007/978-981-15-1084-7_12.</li>
-<li>T. Vidal, T. G. Crainic, M. Gendreau, and C. Prins, &quot;A hybrid genetic algorithm with adaptive diversity management for a large class of vehicle routing problems with time-windows,&quot; <em>Computers &amp; Operations Research</em>, vol. 40, no. 1, pp. 475–489, 2014. DOI: 10.1016/j.cor.2012.07.018.</li>
-<li>E. Alba, G. Luque, and S. Nesmachnow, &quot;Parallel metaheuristics: recent advances and new trends,&quot; <em>International Transactions in Operational Research</em>, vol. 20, no. 1, pp. 1–48, 2013. DOI: 10.1111/j.1475-3995.2012.00862.x.</li>
-<li>M. Bouleft and A. E. H. Alaoui, &quot;Dynamic Multi-Compartment Vehicle Routing Problem with Real-Time Waste Fill Levels Using Metaheuristics,&quot; <em>Sensors</em>, vol. 23, no. 14, p. 6520, 2023. DOI: 10.3390/s23146520.</li>
-<li>S. Erdoğan and E. Miller-Hooks, &quot;A green vehicle routing problem,&quot; <em>Transportation Research Part E: Logistics and Transportation Review</em>, vol. 48, no. 1, pp. 100–114, 2012. DOI: 10.1016/j.tre.2011.08.001.</li>
-<li>G. M. Amdahl, &quot;Validity of the single processor approach to achieving large scale computing capabilities,&quot; <em>AFIPS Conference Proceedings</em>, vol. 30, pp. 483–485, 1967. DOI: 10.1145/1465482.1465560.</li>
-<li>J. L. Gustafson, &quot;Reevaluating Amdahl's law,&quot; <em>Communications of the ACM</em>, vol. 31, no. 5, pp. 532–533, 1988. DOI: 10.1145/42411.42415.</li>
-<li>L. Dagum and R. Menon, &quot;OpenMP: an industry standard API for shared-memory programming,&quot; <em>IEEE Computational Science &amp; Engineering</em>, vol. 5, no. 1, pp. 46–55, 1998. DOI: 10.1109/99.660313.</li>
+<li>M. A. Hannan, M. Akhtar, R. A. Begum, H. Basri, A. Hussain, and E. Scavino, &quot;Capacitated vehicle-routing problem model for scheduled solid waste collection: An approach to reduce operational cost and carbon emission,&quot; <em>Waste Management</em>, vol. 78, pp. 625–642, 2018.</li>
+<li>M. A. Hannan, M. G. Hussin, M. M. Hoque, S. M. A. Ghani, and R. A. Begum, &quot;Solid waste collection optimization objectives, constraints, modeling approaches, and instruments: A review,&quot; <em>Journal of Cleaner Production</em>, vol. 272, p. 122553, 2020.</li>
+<li>E. B. Tirkolaee, A. Goli, S. Gütmen, G.-W. Weber, and K. Szwedzka, &quot;A novel model for sustainable waste collection arc routing problem: Pareto-based algorithms,&quot; <em>Annals of Operations Research</em>, vol. 324, no. 1, pp. 545–575, 2023.</li>
+<li>E. B. Tirkolaee and N. S. Aydın, &quot;A sustainable medical waste collection and transportation model for pandemics,&quot; <em>Waste Management &amp; Research</em>, vol. 39, no. 1, pp. 34–44, 2021.</li>
+<li>T. Bányai, P. Tamás, B. Illés, Ž. Stankevičiūtė, and Á. Bányai, &quot;Optimization of Municipal Waste Collection Routing: Impact of Industry 4.0 Technologies on Environmental Awareness and Sustainability,&quot; <em>Int. J. Environ. Res. Public Health</em>, vol. 16, no. 4, p. 634, 2019.</li>
+<li>N. Saxena, S. Sharma, and V. Patel, &quot;Optimized OpenMP based genetic algorithm solution for vehicle routing problem,&quot; in <em>Smart Computing Paradigms: New Progresses and Challenges</em>, Advances in Intelligent Systems and Computing, vol. 1095, pp. 135–146, Springer, 2020.</li>
+<li>T. Vidal, T. G. Crainic, M. Gendreau, and C. Prins, &quot;A hybrid genetic algorithm with adaptive diversity management for a large class of vehicle routing problems with time-windows,&quot; <em>Computers &amp; Operations Research</em>, vol. 40, no. 1, pp. 475–489, 2014.</li>
+<li>E. Alba, G. Luque, and S. Nesmachnow, &quot;Parallel metaheuristics: recent advances and new trends,&quot; <em>International Transactions in Operational Research</em>, vol. 20, no. 1, pp. 1–48, 2013.</li>
+<li>M. Bouleft and A. E. H. Alaoui, &quot;Dynamic Multi-Compartment Vehicle Routing Problem with Real-Time Waste Fill Levels Using Metaheuristics,&quot; <em>Sensors</em>, vol. 23, no. 14, p. 6520, 2023.</li>
+<li>S. Erdoğan and E. Miller-Hooks, &quot;A green vehicle routing problem,&quot; <em>Transportation Research Part E: Logistics and Transportation Review</em>, vol. 48, no. 1, pp. 100–114, 2012.</li>
+<li>G. M. Amdahl, &quot;Validity of the single processor approach to achieving large scale computing capabilities,&quot; <em>AFIPS Conference Proceedings</em>, vol. 30, pp. 483–485, 1967.</li>
+<li>J. L. Gustafson, &quot;Reevaluating Amdahl's law,&quot; <em>Communications of the ACM</em>, vol. 31, no. 5, pp. 532–533, 1988.</li>
+<li>L. Dagum and R. Menon, &quot;OpenMP: an industry standard API for shared-memory programming,&quot; <em>IEEE Computational Science &amp; Engineering</em>, vol. 5, no. 1, pp. 46–55, 1998.</li>
 <li>W. Gropp, E. Lusk, and A. Skjellum, <em>Using MPI: Portable Parallel Programming with the Message-Passing Interface</em>, 2nd ed. Cambridge, MA: MIT Press, 1999.</li>
 <li>D. E. Goldberg, <em>Genetic Algorithms in Search, Optimization, and Machine Learning</em>. Reading, MA: Addison-Wesley, 1989.</li>
-<li>S. Lin and B. W. Kernighan, &quot;An effective heuristic algorithm for the traveling-salesman problem,&quot; <em>Operations Research</em>, vol. 21, no. 2, pp. 498–516, 1973. DOI: 10.1287/opre.21.2.498.</li>
+<li>S. Lin and B. W. Kernighan, &quot;An effective heuristic algorithm for the traveling-salesman problem,&quot; <em>Operations Research</em>, vol. 21, no. 2, pp. 498–516, 1973.</li>
 </ol>
 
 </body>
